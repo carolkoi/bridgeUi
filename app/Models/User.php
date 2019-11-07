@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -12,7 +13,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @property string name
  * @property string email
- * @property string|\Carbon\Carbon email_verified_at
+ * @property string|Carbon email_verified_at:
  * @property string password
  * @property string remember_token
  */
