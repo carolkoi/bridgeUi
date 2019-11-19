@@ -45,7 +45,8 @@ Wiz-kit is a development-kit based on the <a href='https://adminlte.io/'>AdminLT
      } );
  } );
 
- ``. fromthis link <a href="https://datatables.net/extensions/fixedheader/examples/options/header_footer.html">Fixed Header and Footer for datables</a>
+ ```
+ fromthis link <a href="https://datatables.net/extensions/fixedheader/examples/options/header_footer.html">Fixed Header and Footer for datables</a>
  
  Using wizkit this can be achieved by editing the datatables class i.e. UsersDataTable and adding the initialisation attributed as show below
  
