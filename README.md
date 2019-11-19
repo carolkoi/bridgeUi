@@ -18,7 +18,8 @@ Wiz-kit is a development-kit based on the <a href='https://adminlte.io/'>AdminLT
 `php artisan infyom:rollback Events scaffold --views=edit,create,index,show`
 3. Generating full crud from existing table 
 `php artisan infyom:scaffold User --fromTable --tableName=users`
-4. To hide columns visible on the table 
+4. To hide columns visible on the table
+i.e. Created At column Will be hidden in html and print, but included in export 
 ```
      * Get columns.
      *
@@ -29,7 +30,7 @@ Wiz-kit is a development-kit based on the <a href='https://adminlte.io/'>AdminLT
         return [
             'Id',
             'Name',
-            'Create At' => ['visible' => false, 'printable' => false, 'exportable' => true], // Will be hidden in html and print, but included in export
+            'Create At' => ['visible' => false, 'printable' => false, 'exportable' => true], 
         ];
     }
  ```
@@ -46,7 +47,7 @@ Wiz-kit is a development-kit based on the <a href='https://adminlte.io/'>AdminLT
  } );
 
  ```
- fromthis link <a href="https://datatables.net/extensions/fixedheader/examples/options/header_footer.html">Fixed Header and Footer for datables</a>
+ from this link <a href="https://datatables.net/extensions/fixedheader/examples/options/header_footer.html">Fixed Header and Footer for datables</a>
  
  Using wizkit this can be achieved by editing the datatables class i.e. UsersDataTable and adding the initialisation attributed as show below
  
