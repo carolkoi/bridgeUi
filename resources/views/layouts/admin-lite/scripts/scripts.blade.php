@@ -31,5 +31,9 @@
 <script src="{{asset('admin-lte/bower_components/fastclick/lib/fastclick.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{asset('admin-lte/dist/js/adminlte.min.js')}}"></script>
+<!-- Bootstrap time Picker -->
+<script src="{{asset('admin-lte/plugins/timepicker/bootstrap-timepicker.min.js')}}"></script>
+<!-- Bootstrap date-time Picker -->
+<script src="{{asset('admin-lte/plugins/datetimepicker/bootstrap-datetimepicker.min.js')}}"></script>
 
 @yield('scripts')
