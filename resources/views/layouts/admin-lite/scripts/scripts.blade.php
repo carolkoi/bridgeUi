@@ -35,5 +35,7 @@
 <script src="{{asset('admin-lte/plugins/timepicker/bootstrap-timepicker.min.js')}}"></script>
 <!-- Bootstrap date-time Picker -->
 <script src="{{asset('admin-lte/plugins/datetimepicker/bootstrap-datetimepicker.min.js')}}"></script>
+<!-- Scripts -->
+<script src="{{ asset('js/app.js') }}" ></script>
 
 @yield('scripts')

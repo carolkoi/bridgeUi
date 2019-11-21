@@ -2,7 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 @include('layouts.admin-lite.includes.head')
 <body class="sidebar-mini skin-green-light sidebar-mini">
-<div class="wrapper">
+<div class="wrapper" id="app">
 @include('layouts.admin-lite.includes.top-nav')
 <!-- Left side column. contains the logo and sidebar -->
 @include('layouts.admin-lite.includes.sidebar')

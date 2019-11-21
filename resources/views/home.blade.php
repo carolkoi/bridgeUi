@@ -35,6 +35,8 @@
                 Start creating your amazing application!
             </div>
 
+            <example-component></example-component>
+
             <!-- /.box-body -->
             <div class="box-footer">
                 Footer
