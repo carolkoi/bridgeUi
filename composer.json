@@ -17,6 +17,7 @@
         "laravel/tinker": "^1.0",
         "infyomlabs/adminlte-templates": "5.8.x-dev",
         "infyomlabs/laravel-generator": "5.8.x-dev",
+        "infyomlabs/generator-builder": "dev-master",
         "infyomlabs/swagger-generator": "dev-master",
         "laravelcollective/html": "^5.8.0",
         "yajra/laravel-datatables-buttons": "^4.6",

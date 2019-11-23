@@ -1,5 +1,9 @@
 <?php
 
+use InfyOm\AdminLTETemplates\AdminLTETemplatesServiceProvider;
+use InfyOm\Generator\InfyOmGeneratorServiceProvider;
+use InfyOm\GeneratorBuilder\GeneratorBuilderServiceProvider;
+
 return [
 
     /*
@@ -168,8 +172,9 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
-        \InfyOm\Generator\InfyOmGeneratorServiceProvider::class,
-        \InfyOm\AdminLTETemplates\AdminLTETemplatesServiceProvider::class,
+        InfyOmGeneratorServiceProvider::class,
+        AdminLTETemplatesServiceProvider::class,
+        \InfyOm\GeneratorBuilder\GeneratorBuilderServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Yajra\Datatables\DatatablesServiceProvider::class,
         Yajra\Datatables\ButtonsServiceProvider::class,
