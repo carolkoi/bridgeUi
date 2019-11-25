@@ -34,12 +34,12 @@
     }
 </style>
 <body class="skin-blue" style="background-color: #ecf0f5">
-<div class="col-md-10 col-md-offset-1">
+<div class="col-md-12 ">
     <section class="content">
         <div id="info" style="display: none"></div>
         <div class="box box-primary col-lg-12">
             <div class="box-header" style="margin-top: 10px">
-                <h1 class="box-title" style="font-size: 30px">InfyOm Laravel Generator Builder</h1>
+                <h1 class="box-title" style="font-size: 30px">Form Builder / CRUD Generator</h1>
             </div>
             <div class="box-body">
                 <form id="form">
@@ -230,7 +230,7 @@
         </div>
     </section>
 </div>
-<div class="col-md-10 col-md-offset-1">
+<div class="col-md-12">
     <section class="content">
         <div id="rollbackInfo" style="display: none"></div>
         <div class="box box-primary col-lg-12">
@@ -268,7 +268,7 @@
         </div>
     </section>
 </div>
-<div class="col-md-10 col-md-offset-1">
+<div class="col-md-12">
     <section class="content">
         <div id="schemaInfo" style="display: none"></div>
         <div class="box box-primary col-lg-12">
