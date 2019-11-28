@@ -39,7 +39,7 @@
         <div id="info" style="display: none"></div>
         <div class="box box-primary col-lg-12">
             <div class="box-header" style="margin-top: 10px">
-                <h1 class="box-title" style="font-size: 30px">Form Builder / CRUD Generator</h1>
+                <h1 class="box-title" style="font-size: 30px">CRUD Generator</h1>
             </div>
             <div class="box-body">
                 <form id="form">

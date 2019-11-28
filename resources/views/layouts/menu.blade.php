@@ -3,6 +3,6 @@
 </li>
 
 <li class="{{ Request::is('generator_builder*') ? 'active' : '' }}">
-    <a href="{!! route('io_generator_builder') !!}"><i class="fa fa-edit"></i><span>Builder</span></a>
+    <a href="{!! route('io_generator_builder') !!}"><i class="fa fa-edit"></i><span>Crud Generator</span></a>
 </li>
 
