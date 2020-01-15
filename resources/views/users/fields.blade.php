@@ -1,3 +1,21 @@
+<!-- First Name Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('first_name', 'First Name:') !!}
+    {!! Form::text('first_name', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Last Name Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('last_name', 'Last Name:') !!}
+    {!! Form::text('last_name', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Middle Name Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('middle_name', 'Middle Name:') !!}
+    {!! Form::text('middle_name', null, ['class' => 'form-control']) !!}
+</div>
+
 <!-- Name Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('name', 'Name:') !!}
@@ -10,31 +28,22 @@
     {!! Form::email('email', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Email Verified At Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('email_verified_at', 'Email Verified At:') !!}
-    {!! Form::date('email_verified_at', null, ['class' => 'form-control','id'=>'email_verified_at']) !!}
-</div>
-
-@section('scripts')
-    <script type="text/javascript">
-        $('#email_verified_at').datetimepicker({
-            format: 'YYYY-MM-DD HH:mm:ss',
-            useCurrent: false
-        })
-    </script>
-@endsection
-
 <!-- Password Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('password', 'Password:') !!}
     {!! Form::password('password', ['class' => 'form-control']) !!}
 </div>
 
-<!-- Remember Token Field -->
+<!-- Department Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('remember_token', 'Remember Token:') !!}
-    {!! Form::text('remember_token', null, ['class' => 'form-control']) !!}
+    {!! Form::label('department_id', 'Department Id:') !!}
+    {!! Form::number('department_id', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Location Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('location', 'Location:') !!}
+    {!! Form::text('location', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->

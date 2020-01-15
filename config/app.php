@@ -179,6 +179,8 @@ return [
         Yajra\Datatables\DatatablesServiceProvider::class,
         Yajra\Datatables\ButtonsServiceProvider::class,
         Yajra\Datatables\HtmlServiceProvider::class,
+        Laravel\Passport\PassportServiceProvider::class,
+
         /*
          * Application Service Providers...
          */

@@ -7,21 +7,33 @@ use Illuminate\Database\Migrations\Migration;
 class CreateUsersTable extends Migration
 {
     /**
+     * Schema table name to migrate
+     * @var string
+     */
+    public $tableName = 'users';
+
+    /**
      * Run the migrations.
+     * @table users
      *
      * @return void
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
+        Schema::create($this->tableName, function (Blueprint $table) {
+            $table->engine = 'InnoDB';
+            $table->increments('id');
+            $table->string('first_name', 45)->nullable();
+            $table->string('last_name', 45)->nullable();
+            $table->string('middle_name', 45)->nullable();
+            $table->string('name', 100)->nullable();
+            $table->string('email', 45)->nullable();
+            $table->string('password', 100)->nullable();
+            $table->integer('department_id')->nullable();
+            $table->string('location', 45)->nullable();
+            $table->string('remember_token', 150)->nullable();
             $table->softDeletes();
+            $table->nullableTimestamps();
         });
     }
 
@@ -30,8 +42,8 @@ class CreateUsersTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
-        Schema::dropIfExists('users');
-    }
+     public function down()
+     {
+       Schema::dropIfExists($this->tableName);
+     }
 }

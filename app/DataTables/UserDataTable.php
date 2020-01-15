@@ -65,8 +65,14 @@ class UserDataTable extends DataTable
     protected function getColumns()
     {
         return [
+            'first_name',
+            'last_name',
+            'middle_name',
             'name',
             'email',
+            'password',
+            'department_id',
+            'location'
         ];
     }
 

@@ -1,3 +1,21 @@
+<!-- First Name Field -->
+<div class="form-group">
+    {!! Form::label('first_name', 'First Name:') !!}
+    <p>{!! $user->first_name !!}</p>
+</div>
+
+<!-- Last Name Field -->
+<div class="form-group">
+    {!! Form::label('last_name', 'Last Name:') !!}
+    <p>{!! $user->last_name !!}</p>
+</div>
+
+<!-- Middle Name Field -->
+<div class="form-group">
+    {!! Form::label('middle_name', 'Middle Name:') !!}
+    <p>{!! $user->middle_name !!}</p>
+</div>
+
 <!-- Name Field -->
 <div class="form-group">
     {!! Form::label('name', 'Name:') !!}
@@ -10,21 +28,21 @@
     <p>{!! $user->email !!}</p>
 </div>
 
-<!-- Email Verified At Field -->
-<div class="form-group">
-    {!! Form::label('email_verified_at', 'Email Verified At:') !!}
-    <p>{!! $user->email_verified_at !!}</p>
-</div>
-
 <!-- Password Field -->
 <div class="form-group">
     {!! Form::label('password', 'Password:') !!}
     <p>{!! $user->password !!}</p>
 </div>
 
-<!-- Remember Token Field -->
+<!-- Department Id Field -->
 <div class="form-group">
-    {!! Form::label('remember_token', 'Remember Token:') !!}
-    <p>{!! $user->remember_token !!}</p>
+    {!! Form::label('department_id', 'Department Id:') !!}
+    <p>{!! $user->department_id !!}</p>
+</div>
+
+<!-- Location Field -->
+<div class="form-group">
+    {!! Form::label('location', 'Location:') !!}
+    <p>{!! $user->location !!}</p>
 </div>
 

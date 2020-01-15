@@ -2,27 +2,87 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Passport\HasApiTokens;
 
 /**
- * Class User
- * @package App\Models
- * @version October 25, 2019, 10:59 pm UTC
- *
- * @property string name
- * @property string email
- * @property string|Carbon email_verified_at:
- * @property string password
- * @property string remember_token
+ * @SWG\Definition(
+ *      definition="User",
+ *      required={""},
+ *      @SWG\Property(
+ *          property="id",
+ *          description="id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="first_name",
+ *          description="first_name",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="last_name",
+ *          description="last_name",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="middle_name",
+ *          description="middle_name",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="name",
+ *          description="name",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="email",
+ *          description="email",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="password",
+ *          description="password",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="department_id",
+ *          description="department_id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="location",
+ *          description="location",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="created_at",
+ *          description="created_at",
+ *          type="string",
+ *          format="date-time"
+ *      ),
+ *      @SWG\Property(
+ *          property="updated_at",
+ *          description="updated_at",
+ *          type="string",
+ *          format="date-time"
+ *      ),
+ *      @SWG\Property(
+ *          property="deleted_at",
+ *          description="deleted_at",
+ *          type="string",
+ *          format="date-time"
+ *      )
+ * )
  */
 class User extends Model
 {
-    use SoftDeletes;
+    use HasApiTokens, SoftDeletes;
 
     public $table = 'users';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -32,11 +92,14 @@ class User extends Model
 
 
     public $fillable = [
+        'first_name',
+        'last_name',
+        'middle_name',
         'name',
         'email',
-        'email_verified_at',
         'password',
-        'remember_token'
+        'department_id',
+        'location'
     ];
 
     /**
@@ -46,11 +109,14 @@ class User extends Model
      */
     protected $casts = [
         'id' => 'integer',
+        'first_name' => 'string',
+        'last_name' => 'string',
+        'middle_name' => 'string',
         'name' => 'string',
         'email' => 'string',
-        'email_verified_at' => 'datetime',
         'password' => 'string',
-        'remember_token' => 'string'
+        'department_id' => 'integer',
+        'location' => 'string'
     ];
 
     /**
@@ -59,10 +125,8 @@ class User extends Model
      * @var array
      */
     public static $rules = [
-        'name' => 'required',
-        'email' => 'required',
-        'password' => 'required'
+
     ];
 
-    
+
 }
