@@ -18,7 +18,17 @@ class TicketDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'tickets.datatables_actions');
+        return $dataTable
+            ->addColumn('staff', 'tickets.datatables_staff')
+            ->addColumn('department', 'tickets.datatables_department')
+            ->addColumn('location', 'tickets.datatables_location')
+            ->addColumn('issue_type', 'tickets.datatables_issue')
+            ->addColumn('action', 'tickets.datatables_actions')
+            ->setRowAttr([
+                'style' => function($query){
+                    return $query->business_continuity_impacted ? 'background-color: #ff0000;' : null;
+                }
+            ]);
     }
 
     /**
@@ -29,7 +39,7 @@ class TicketDataTable extends DataTable
      */
     public function query(Ticket $model)
     {
-        return $model->newQuery();
+        return $model->with('user', 'department', 'issue_type')->newQuery();
     }
 
     /**
@@ -65,12 +75,13 @@ class TicketDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'user_id',
-            'department_id',
-            'issue_type_id',
-            'business_continuity_impacted',
-            'image',
-            'description'
+            'staff',
+            'department',
+            'location',
+            'issue_type',
+//            'business_continuity_impacted',
+//            'image',
+//            'description'
         ];
     }
 
@@ -83,4 +94,5 @@ class TicketDataTable extends DataTable
     {
         return 'ticketsdatatable_' . time();
     }
+
 }

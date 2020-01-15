@@ -113,8 +113,25 @@ class Ticket extends Model
      * @var array
      */
     public static $rules = [
+        'user_id' => 'required',
+        'department_id' => 'required',
+        'issue_type_id' => 'required',
+        'business_continuity_impacted' => 'required',
+        'image' => 'required',
+        'description' => 'required'
 
     ];
 
+    public function user(){
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function department(){
+        return $this->belongsTo(Department::class, 'department_id');
+    }
+
+    public function issue_type(){
+        return $this->belongsTo(IssueType::class, 'issue_type_id');
+    }
 
 }
