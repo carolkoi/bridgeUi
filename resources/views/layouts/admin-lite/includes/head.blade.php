@@ -40,6 +40,32 @@
     <link rel="stylesheet" href="{{asset('admin-lte/plugins/datetimepicker/bootstrap-datetimepicker.min.css')}}">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- Pace style -->
+    <link rel="stylesheet" href="{{asset('admin-lte/plugins/pace/pace.min.css')}}">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{asset('admin-lte/bower_components/select2/dist/css/select2.min.css')}}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
+    <style>
+        .select2-container--default .select2-selection--single{
+            border-radius: unset;
+        }
+
+        .select2-container--default .select2-selection--single, .select2-selection .select2-selection--single {
+            border: 1px solid #d2d6de;
+            border-radius: 0;
+            padding: 4px 12px;
+            height: 34px;
+        }
+        .select2-container--default .select2-selection--single {
+            background-color: #fff;
+            /* border: 1px solid #aaa; */
+            border-radius: 4px;
+        }
+        .select2-container--default .select2-selection--single {
+            border-radius: unset;
+        }
+
+    </style>
 
     @yield('css')
 </head>

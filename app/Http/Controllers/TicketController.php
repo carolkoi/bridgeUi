@@ -6,11 +6,13 @@ use App\DataTables\TicketDataTable;
 use App\Http\Requests;
 use App\Http\Requests\CreateTicketRequest;
 use App\Http\Requests\UpdateTicketRequest;
+use App\Models\Department;
 use App\Models\IssueType;
 use App\Models\User;
 use App\Repositories\TicketRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Response;
 
@@ -63,6 +65,10 @@ class TicketController extends AppBaseController
 //        dd($input);
 
         $ticket = $this->ticketRepository->create($input);
+
+        foreach ($request->input('image', []) as $file) {
+            $ticket->addMedia(storage_path('tmp/uploads/' . $file))->toMediaCollection('document');
+        }
 //        return response()->json($ticket);
 
         Flash::success('Ticket saved successfully.');
@@ -80,6 +86,9 @@ class TicketController extends AppBaseController
     public function show($id)
     {
         $ticket = $this->ticketRepository->find($id);
+        $issue = IssueType::where('id', $ticket->issue_type_id)->pluck('issue', 'id');
+        $user = User::find($ticket->user_id);
+        $department = Department::find($ticket->department_id)->department;
 
         if (empty($ticket)) {
             Flash::error('Ticket not found');
@@ -87,7 +96,23 @@ class TicketController extends AppBaseController
             return redirect(route('tickets.index'));
         }
 
-        return view('tickets.show')->with('ticket', $ticket);
+        return view('tickets.show')->with(['ticket' => $ticket,
+            'issue' => $issue,
+            'user' => $user,
+            'department' => $department]);
+    }
+
+    public function resolve($id)
+    {
+        $ticket = $this->ticketRepository->find($id);
+
+        if (empty($ticket)) {
+            Flash::error('Ticket not found');
+
+            return redirect(route('tickets.index'));
+        }
+
+        return view('tickets.resolve')->with(['ticket' => $ticket]);
     }
 
     /**
@@ -100,6 +125,9 @@ class TicketController extends AppBaseController
     public function edit($id)
     {
         $ticket = $this->ticketRepository->find($id);
+        $issues = IssueType::all()->pluck('issue', 'id');
+
+
 
         if (empty($ticket)) {
             Flash::error('Ticket not found');
@@ -107,7 +135,7 @@ class TicketController extends AppBaseController
             return redirect(route('tickets.index'));
         }
 
-        return view('tickets.edit')->with('ticket', $ticket);
+        return view('tickets.edit')->with(['ticket' => $ticket, 'issues' => $issues]);
     }
 
     /**
@@ -129,6 +157,21 @@ class TicketController extends AppBaseController
         }
 
         $ticket = $this->ticketRepository->update($request->all(), $id);
+        if (count($ticket->image) > 0) {
+            foreach ($ticket->image as $media) {
+                if (!in_array($media->file_name, $request->input('image', []))) {
+                    $media->delete();
+                }
+            }
+        }
+
+        $media = $ticket->image->pluck('file_name')->toArray();
+
+        foreach ($request->input('document', []) as $file) {
+            if (count($media) === 0 || !in_array($file, $media)) {
+                $ticket->addMedia(storage_path('tmp/uploads/' . $file))->toMediaCollection('document');
+            }
+        }
 
         Flash::success('Ticket updated successfully.');
 
@@ -157,5 +200,25 @@ class TicketController extends AppBaseController
         Flash::success('Ticket deleted successfully.');
 
         return redirect(route('tickets.index'));
+    }
+
+    public function storeMedia(Request $request){
+        $path = storage_path('tmp/uploads');
+
+        if (!file_exists($path)) {
+            mkdir($path, 0777, true);
+        }
+
+        $file = $request->file('file');
+
+        $name = uniqid() . '_' . trim($file->getClientOriginalName());
+
+        $file->move($path, $name);
+
+        return response()->json([
+            'name'          => $name,
+            'original_name' => $file->getClientOriginalName(),
+        ]);
+
     }
 }

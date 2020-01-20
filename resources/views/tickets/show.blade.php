@@ -9,11 +9,22 @@
     <div class="content">
         <div class="box box-primary">
             <div class="box-body">
-                <div class="row" style="padding-left: 20px">
+                <div class="row">
+                    {!! Form::model($ticket, ['route' => ['tickets.update', $ticket->id], 'method' => 'patch']) !!}
+
                     @include('tickets.show_fields')
-                    <a href="{!! route('tickets.index') !!}" class="btn btn-default">Back</a>
+
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>
     </div>
 @endsection
+@section('scripts')
+    <script>
+        jQuery(document).ready(function () {
+            $("input[type = 'checkbox']").prop("disabled", true);
+            $('#description').prop("disabled", true);
+        })
+    </script>
+    @endsection

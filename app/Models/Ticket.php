@@ -5,6 +5,8 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Passport\HasApiTokens;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
 /**
  * @SWG\Definition(
@@ -69,9 +71,9 @@ use Laravel\Passport\HasApiTokens;
  *      )
  * )
  */
-class Ticket extends Model
+class Ticket extends Model implements HasMedia
 {
-    use HasApiTokens, SoftDeletes;
+    use HasApiTokens, SoftDeletes, HasMediaTrait;
 
     public $table = 'tickets';
 
@@ -103,7 +105,7 @@ class Ticket extends Model
         'department_id' => 'integer',
         'issue_type_id' => 'integer',
         'business_continuity_impacted' => 'boolean',
-        'image' => 'string',
+        'image' => 'array',
         'description' => 'string'
     ];
 
@@ -113,11 +115,11 @@ class Ticket extends Model
      * @var array
      */
     public static $rules = [
-        'user_id' => 'required',
-        'department_id' => 'required',
+//        'user_id' => 'required',
+//        'department_id' => 'required',
         'issue_type_id' => 'required',
-        'business_continuity_impacted' => 'required',
-        'image' => 'required',
+//        'business_continuity_impacted' => 'required',
+//        'image' => 'required',
         'description' => 'required'
 
     ];

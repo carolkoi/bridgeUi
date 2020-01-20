@@ -1,36 +1,66 @@
 <!-- User Id Field -->
-<div class="form-group">
-    {!! Form::label('user_id', 'User Id:') !!}
-    <p>{!! $ticket->user_id !!}</p>
+<div class="form-group col-sm-4">
+    {!! Form::label('user_id', 'Staff:') !!}
+    {!! Form::text('user_id', $user->name, ['class' => 'form-control', 'readonly' => 'readonly']) !!}
 </div>
 
 <!-- Department Id Field -->
-<div class="form-group">
-    {!! Form::label('department_id', 'Department Id:') !!}
-    <p>{!! $ticket->department_id !!}</p>
+<div class="form-group col-sm-4">
+    {!! Form::label('department_id', 'Department:') !!}
+    {!! Form::text('department_id', $department, ['class' => 'form-control', 'readonly' => 'readonly']) !!}
+</div>
+
+<!-- Department Id Field -->
+<div class="form-group col-sm-4">
+    {!! Form::label('location', 'Location:') !!}
+    {!! Form::text('location', $user->location, ['class' => 'form-control', 'readonly' => 'readonly']) !!}
 </div>
 
 <!-- Issue Type Id Field -->
-<div class="form-group">
-    {!! Form::label('issue_type_id', 'Issue Type Id:') !!}
-    <p>{!! $ticket->issue_type_id !!}</p>
+<div class="form-group col-sm-6">
+    {!! Form::label('issue_type_id', 'Issue Type:') !!}
+    {!! Form::select('issue_type_id', $issue, null, ['class' => 'form-control select2']) !!}
 </div>
+
 
 <!-- Business Continuity Impacted Field -->
-<div class="form-group">
+<div class="form-group col-sm-6">
     {!! Form::label('business_continuity_impacted', 'Business Continuity Impacted:') !!}
-    <p>{!! $ticket->business_continuity_impacted !!}</p>
+    {{--    <label class="checkbox-inline">--}}
+    {{--        {!! Form::hidden('business_continuity_impacted', 0) !!}--}}
+    {!! Form::checkbox('business_continuity_impacted', '1', null) !!}
+    {{--    </label>--}}
 </div>
-
-<!-- Image Field -->
-<div class="form-group">
-    {!! Form::label('image', 'Image:') !!}
-    <p>{!! $ticket->image !!}</p>
-</div>
-
+<br/><br/><br/><br/><br/><br/><br/><br/>
 <!-- Description Field -->
-<div class="form-group">
+<div class="form-group col-sm-6 col-lg-6">
     {!! Form::label('description', 'Description:') !!}
-    <p>{!! $ticket->description !!}</p>
+    {!! Form::textarea('description', null, ['id' => 'description']) !!}
+</div>
+<!-- Image Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('image', 'Image Uploads or Error Log:') !!}
+    <div class="needsclick dropzone" id="document-dropzone"></div>
+</div>
+<br/><br/>
+
+<!-- Submit Field -->
+<div class="form-group col-sm-12">
+    {!! Form::submit('Surrender', ['class' => 'btn btn-primary']) !!}
+    {!! Form::submit('Resolve', ['class' => 'btn btn-primary']) !!}
+    {!! Form::submit('Issue Parts', ['class' => 'btn btn-primary']) !!}
 </div>
 
+{{--<!-- Submit Field -->--}}
+{{--<div class="form-group col-sm-12">--}}
+{{--    {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}--}}
+{{--    <a href="{!! route('tickets.index') !!}" class="btn btn-default">Cancel</a>--}}
+{{--</div>--}}
+
+@section('js')
+
+    <script>
+        CKEDITOR.replace('description')
+
+    </script>
+@endsection

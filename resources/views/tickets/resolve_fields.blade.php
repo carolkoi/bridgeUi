@@ -1,14 +1,14 @@
-{{--<!-- User Id Field -->--}}
-{{--<div class="form-group col-sm-6">--}}
-{{--    {!! Form::label('user_id', 'User Id:') !!}--}}
-{{--    {!! Form::select('user_id', $users, ['class' => 'select2']) !!}--}}
-{{--</div>--}}
+<!-- User Id Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('user_id', 'User Id:') !!}
+    {!! Form::text('user_id', $users, ['class' => 'form-control']) !!}
+</div>
 
-{{--<!-- Department Id Field -->--}}
-{{--<div class="form-group col-sm-6">--}}
-{{--    {!! Form::label('department_id', 'Department Id:') !!}--}}
-{{--    {!! Form::number('department_id', null, ['class' => 'form-control']) !!}--}}
-{{--</div>--}}
+<!-- Department Id Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('department_id', 'Department Id:') !!}
+    {!! Form::text('department_id', null, ['class' => 'form-control']) !!}
+</div>
 
 <!-- Issue Type Id Field -->
 <div class="form-group col-sm-6">
@@ -20,10 +20,10 @@
 <!-- Business Continuity Impacted Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('business_continuity_impacted', 'Business Continuity Impacted:') !!}
-{{--    <label class="checkbox-inline">--}}
-{{--        {!! Form::hidden('business_continuity_impacted', 0) !!}--}}
-        {!! Form::checkbox('business_continuity_impacted', '1', null) !!}
-{{--    </label>--}}
+    {{--    <label class="checkbox-inline">--}}
+    {{--        {!! Form::hidden('business_continuity_impacted', 0) !!}--}}
+    {!! Form::checkbox('business_continuity_impacted', '1', null) !!}
+    {{--    </label>--}}
 </div>
 <br/><br/><br/>
 <!-- Image Field -->
@@ -31,7 +31,7 @@
     {!! Form::label('image', 'Upload Image or Error Log:') !!}
     <div class="needsclick dropzone" id="document-dropzone"></div>
 </div>
-    <br/><br/>
+<br/><br/>
 
 <!-- Description Field -->
 <div class="form-group col-sm-12 col-lg-12">

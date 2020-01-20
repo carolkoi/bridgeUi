@@ -48,4 +48,8 @@ Route::resource('departments', 'DepartmentController');
 Route::resource('tickets', 'TicketController');
 
 Route::resource('issueTypes', 'IssueTypeController');
+Route::post('tickets/media', 'TicketController@storeMedia')
+    ->name('tickets.storeMedia');
+Route::post('tickets/resolve', 'TicketController@resolve')
+    ->name('tickets.resolve');
 
