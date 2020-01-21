@@ -58,7 +58,7 @@ class TicketController extends AppBaseController
      */
     public function store(CreateTicketRequest $request)
     {
-        $input = $request->all();
+        $input = $request->except('image');
         $input['user_id'] = Auth::user()->id;
         $input['department_id'] = User::find(Auth::user()->id)->department_id;
         $input['location'] = User::find(Auth::user()->id)->location;
@@ -167,7 +167,7 @@ class TicketController extends AppBaseController
 
         $media = $ticket->image->pluck('file_name')->toArray();
 
-        foreach ($request->input('document', []) as $file) {
+        foreach ($request->input('image', []) as $file) {
             if (count($media) === 0 || !in_array($file, $media)) {
                 $ticket->addMedia(storage_path('tmp/uploads/' . $file))->toMediaCollection('document');
             }

@@ -23,12 +23,12 @@ class CreateTicketsTable extends Migration
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->unsignedInteger('user_id')->nullable();
-            $table->unsignedInteger('department_id')->nullable();
-            $table->unsignedInteger('issue_type_id')->nullable();
-            $table->tinyInteger('business_continuity_impacted')->nullable();
-            $table->binary('image')->nullable();
-            $table->longText('description')->nullable();
+            $table->unsignedInteger('user_id')->nullable()->default(null);
+            $table->unsignedInteger('department_id')->nullable()->default(null);
+            $table->unsignedInteger('issue_type_id')->nullable()->default(null);
+            $table->tinyInteger('business_continuity_impacted')->nullable()->default('0');
+            $table->longText('image')->nullable()->default(null);
+            $table->longText('description')->nullable()->default(null);
             $table->softDeletes();
             $table->nullableTimestamps();
         });

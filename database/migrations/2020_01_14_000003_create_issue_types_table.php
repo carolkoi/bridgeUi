@@ -23,7 +23,7 @@ class CreateIssueTypesTable extends Migration
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('issue', 45)->nullable();
+            $table->string('issue', 45)->nullable()->default(null);
             $table->softDeletes();
             $table->nullableTimestamps();
         });

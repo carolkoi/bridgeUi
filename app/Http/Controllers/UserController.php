@@ -9,6 +9,7 @@ use App\Http\Requests\UpdateUserRequest;
 use App\Repositories\UserRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Http\Request;
 use Response;
 
 class UserController extends AppBaseController
@@ -147,5 +148,17 @@ class UserController extends AppBaseController
         Flash::success('User deleted successfully.');
 
         return redirect(route('users.index'));
+    }
+
+    public function updateIctStaff(Request $request){
+        $inputs = $request->all();
+
+        return collect($inputs)->each(function ($input){
+            $record = $this->userRepository->find($input['id']);
+            $this->userRepository->update([
+                'ict_staff' => 1,
+            ], $record->id);
+        });
+
     }
 }

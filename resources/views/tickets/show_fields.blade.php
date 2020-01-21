@@ -40,7 +40,11 @@
 <!-- Image Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('image', 'Image Uploads or Error Log:') !!}
-    <div class="needsclick dropzone" id="document-dropzone"></div>
+    <br/>
+    <img src="{{$ticket->getFirstMediaUrl('document', 'thumb')}}" />
+
+
+{{--    <div class="needsclick dropzone" id="document-dropzone"></div>--}}
 </div>
 <br/><br/>
 

@@ -26,11 +26,22 @@
 {{--    </label>--}}
 </div>
 <br/><br/><br/>
+@if(isset($ticket))
+    <div class="form-group col-sm-6">
+        {!! Form::label('image', 'Image Uploads or Error Log:') !!}
+        <br/>
+        <img src="{{$ticket->getFirstMediaUrl('document', 'thumb')}}" />
+
+
+        {{--    <div class="needsclick dropzone" id="document-dropzone"></div>--}}
+    </div>
+    @else
 <!-- Image Field -->
 <div class="form-group col-sm-12">
     {!! Form::label('image', 'Upload Image or Error Log:') !!}
     <div class="needsclick dropzone" id="document-dropzone"></div>
 </div>
+@endif
     <br/><br/>
 
 <!-- Description Field -->

@@ -29,7 +29,8 @@
         Dropzone.options.documentDropzone = {
             url: '{{ route('tickets.storeMedia') }}',
             // paramName: "image", // The name that will be used to transfer the file,
-            maxFilesize: 2, // MB
+            maxFilesize: 12, // MB
+            acceptedFiles: ".jpeg,.jpg,.png,.gif",
             addRemoveLinks: true,
             headers: {
                 'X-CSRF-TOKEN': "{{ csrf_token() }}"

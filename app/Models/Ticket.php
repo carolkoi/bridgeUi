@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Passport\HasApiTokens;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\Models\Media;
 
 /**
  * @SWG\Definition(
@@ -75,6 +76,21 @@ class Ticket extends Model implements HasMedia
 {
     use HasApiTokens, SoftDeletes, HasMediaTrait;
 
+    protected $guarded = [];
+
+    public function registerMediaConversions(Media $media = null)
+    {
+        $this->addMediaConversion('thumb')
+            ->width(200)
+            ->height(200)
+            ->sharpen(10);
+
+        $this->addMediaConversion('square')
+            ->width(412)
+            ->height(412)
+            ->sharpen(10);
+    }
+
     public $table = 'tickets';
 
     const CREATED_AT = 'created_at';
@@ -123,6 +139,7 @@ class Ticket extends Model implements HasMedia
         'description' => 'required'
 
     ];
+
 
     public function user(){
         return $this->belongsTo(User::class, 'user_id');

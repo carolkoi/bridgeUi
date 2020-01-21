@@ -99,6 +99,7 @@ class User extends Model
         'email',
         'password',
         'department_id',
+        'ict_staff',
         'location'
     ];
 

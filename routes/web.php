@@ -12,6 +12,8 @@
 */
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Resources\User as UserResource;
+use App\Models\User;
 
 Route::get('/', function () {
     return view('welcome');
@@ -52,4 +54,8 @@ Route::post('tickets/media', 'TicketController@storeMedia')
     ->name('tickets.storeMedia');
 Route::post('tickets/resolve', 'TicketController@resolve')
     ->name('tickets.resolve');
+Route::get('/hr-staff-list', function () {
+    return UserResource::collection(User::where('ict_staff', false)->paginate(10));
+});
+Route::post('ict-staffs', 'UserController@updateIctStaff');
 

@@ -23,7 +23,7 @@ class CreateDepartmentsTable extends Migration
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('department', 45)->nullable();
+            $table->string('department', 45)->nullable()->default(null);
             $table->softDeletes();
             $table->nullableTimestamps();
         });
