@@ -26,6 +26,11 @@
 {{--    </label>--}}
 </div>
 <br/><br/><br/>
+<!-- Description Field -->
+<div class="form-group col-sm-6 col-lg-6">
+    {!! Form::label('description', 'Description:') !!}
+    {!! Form::textarea('description', null, ['id' => 'description']) !!}
+</div>
 @if(isset($ticket))
     <div class="form-group col-sm-6">
         {!! Form::label('image', 'Image Uploads or Error Log:') !!}
@@ -37,24 +42,32 @@
     </div>
     @else
 <!-- Image Field -->
-<div class="form-group col-sm-12">
+<div class="form-group col-sm-6">
     {!! Form::label('image', 'Upload Image or Error Log:') !!}
     <div class="needsclick dropzone" id="document-dropzone"></div>
 </div>
 @endif
-    <br/><br/>
 
-<!-- Description Field -->
-<div class="form-group col-sm-12 col-lg-12">
-    {!! Form::label('description', 'Description:') !!}
-    {!! Form::textarea('description', null, ['id' => 'description']) !!}
-</div>
+<!--assign field -->
+@if(isset($ticket))
+    <div class="form-group col-sm-6">
+        {!! Form::label('assign_to', 'Assigned to:') !!}
+        {!! Form::select('assign_to', $ict_staffs, null, ['class' => 'form-control select2']) !!}
+    </div>
+    @endif
 
 <!-- Submit Field -->
+@if(isset($ticket))
+    <div class="form-group col-sm-12">
+        {!! Form::submit('Assign', ['class' => 'btn btn-primary']) !!}
+        <a href="{!! route('tickets.index') !!}" class="btn btn-default">Cancel</a>
+    </div>
+    @else
 <div class="form-group col-sm-12">
     {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
     <a href="{!! route('tickets.index') !!}" class="btn btn-default">Cancel</a>
 </div>
+@endif
 
 {{--@section('js')--}}
 

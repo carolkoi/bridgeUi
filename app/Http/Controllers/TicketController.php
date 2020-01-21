@@ -125,7 +125,8 @@ class TicketController extends AppBaseController
     public function edit($id)
     {
         $ticket = $this->ticketRepository->find($id);
-        $issues = IssueType::all()->pluck('issue', 'id');
+        $issues = IssueType::where('id', $ticket->issue_type_id)->pluck('issue', 'id');
+        $ict_staffs = User::where('ict_staff', true)->pluck('name', 'id');
 
 
 
@@ -135,7 +136,7 @@ class TicketController extends AppBaseController
             return redirect(route('tickets.index'));
         }
 
-        return view('tickets.edit')->with(['ticket' => $ticket, 'issues' => $issues]);
+        return view('tickets.edit')->with(['ticket' => $ticket, 'issues' => $issues, 'ict_staffs' => $ict_staffs]);
     }
 
     /**
@@ -157,21 +158,21 @@ class TicketController extends AppBaseController
         }
 
         $ticket = $this->ticketRepository->update($request->all(), $id);
-        if (count($ticket->image) > 0) {
-            foreach ($ticket->image as $media) {
-                if (!in_array($media->file_name, $request->input('image', []))) {
-                    $media->delete();
-                }
-            }
-        }
-
-        $media = $ticket->image->pluck('file_name')->toArray();
-
-        foreach ($request->input('image', []) as $file) {
-            if (count($media) === 0 || !in_array($file, $media)) {
-                $ticket->addMedia(storage_path('tmp/uploads/' . $file))->toMediaCollection('document');
-            }
-        }
+//        if (count($ticket->image) > 0) {
+//            foreach ($ticket->image as $media) {
+//                if (!in_array($media->file_name, $request->input('image', []))) {
+//                    $media->delete();
+//                }
+//            }
+//        }
+//
+//        $media = $ticket->image->pluck('file_name')->toArray();
+//
+//        foreach ($request->input('image', []) as $file) {
+//            if (count($media) === 0 || !in_array($file, $media)) {
+//                $ticket->addMedia(storage_path('tmp/uploads/' . $file))->toMediaCollection('document');
+//            }
+//        }
 
         Flash::success('Ticket updated successfully.');
 
