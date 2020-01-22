@@ -107,7 +107,8 @@ class Ticket extends Model implements HasMedia
         'issue_type_id',
         'business_continuity_impacted',
         'image',
-        'description'
+        'description',
+        'assign_to'
     ];
 
     /**
@@ -122,7 +123,8 @@ class Ticket extends Model implements HasMedia
         'issue_type_id' => 'integer',
         'business_continuity_impacted' => 'boolean',
         'image' => 'array',
-        'description' => 'string'
+        'description' => 'string',
+        'assign_to' => 'integer'
     ];
 
     /**
@@ -135,7 +137,7 @@ class Ticket extends Model implements HasMedia
 //        'department_id' => 'required',
         'issue_type_id' => 'required',
 //        'business_continuity_impacted' => 'required',
-//        'image' => 'required',
+        'image' => 'required',
         'description' => 'required'
 
     ];

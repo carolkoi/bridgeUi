@@ -6,6 +6,7 @@ use App\DataTables\TicketDataTable;
 use App\Http\Requests;
 use App\Http\Requests\CreateTicketRequest;
 use App\Http\Requests\UpdateTicketRequest;
+use App\Mail\ticketAssigned;
 use App\Models\Department;
 use App\Models\IssueType;
 use App\Models\User;
@@ -14,6 +15,7 @@ use Flash;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Response;
 
 class TicketController extends AppBaseController
@@ -86,7 +88,7 @@ class TicketController extends AppBaseController
     public function show($id)
     {
         $ticket = $this->ticketRepository->find($id);
-        $issue = IssueType::where('id', $ticket->issue_type_id)->pluck('issue', 'id');
+        $issue = IssueType::pluck('issue', 'id');
         $user = User::find($ticket->user_id);
         $department = Department::find($ticket->department_id)->department;
 
@@ -125,7 +127,7 @@ class TicketController extends AppBaseController
     public function edit($id)
     {
         $ticket = $this->ticketRepository->find($id);
-        $issues = IssueType::where('id', $ticket->issue_type_id)->pluck('issue', 'id');
+        $issues = IssueType::pluck('issue', 'id');
         $ict_staffs = User::where('ict_staff', true)->pluck('name', 'id');
 
 
@@ -147,7 +149,7 @@ class TicketController extends AppBaseController
      *
      * @return Response
      */
-    public function update($id, UpdateTicketRequest $request)
+    public function update($id, Request $request)
     {
         $ticket = $this->ticketRepository->find($id);
 
@@ -158,23 +160,10 @@ class TicketController extends AppBaseController
         }
 
         $ticket = $this->ticketRepository->update($request->all(), $id);
-//        if (count($ticket->image) > 0) {
-//            foreach ($ticket->image as $media) {
-//                if (!in_array($media->file_name, $request->input('image', []))) {
-//                    $media->delete();
-//                }
-//            }
-//        }
-//
-//        $media = $ticket->image->pluck('file_name')->toArray();
-//
-//        foreach ($request->input('image', []) as $file) {
-//            if (count($media) === 0 || !in_array($file, $media)) {
-//                $ticket->addMedia(storage_path('tmp/uploads/' . $file))->toMediaCollection('document');
-//            }
-//        }
+        $user = User::find($ticket->assign_to);
+        Mail::to($user->email)->send(new ticketAssigned($ticket));
 
-        Flash::success('Ticket updated successfully.');
+        Flash::success("Ticket assigned to {$user->name} successfully.");
 
         return redirect(route('tickets.index'));
     }

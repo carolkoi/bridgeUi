@@ -1,10 +1,15 @@
 @component('mail::message')
-# Introduction
+# Dear {!! $staff !!}
 
-The body of your message.
+You have been assigned below ticket. Kindly resolve the ticket by making an inspection report
+detailing out the issue and solution offered.
 
-@component('mail::button', ['url' => ''])
-Button Text
+<h3>Ticket Details</h3>
+{!! $issueType !!}
+{!! $ticket->description  !!}
+
+@component('mail::button', ['url' => url('tickets/'.$ticket->id)])
+View Ticket
 @endcomponent
 
 Thanks,<br>

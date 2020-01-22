@@ -13,7 +13,7 @@
 <!-- Issue Type Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('issue_type_id', 'Issue Type:') !!}
-    {!! Form::select('issue_type_id', $issues, null, ['class' => 'form-control select2']) !!}
+    {!! Form::select('issue_type_id', $issues, null, ['class' => 'form-control select2', 'id' => 'issue_type_id']) !!}
 </div>
 <br/>
 

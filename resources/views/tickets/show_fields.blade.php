@@ -19,7 +19,7 @@
 <!-- Issue Type Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('issue_type_id', 'Issue Type:') !!}
-    {!! Form::select('issue_type_id', $issue, null, ['class' => 'form-control select2']) !!}
+    {!! Form::select('issue_type_id', $issue, null, ['class' => 'form-control select2', 'id' => 'issue_type_id']) !!}
 </div>
 
 
@@ -32,27 +32,47 @@
     {{--    </label>--}}
 </div>
 <br/><br/><br/><br/><br/><br/><br/><br/>
-<!-- Description Field -->
-<div class="form-group col-sm-6 col-lg-6">
-    {!! Form::label('description', 'Description:') !!}
-    {!! Form::textarea('description', null, ['id' => 'description']) !!}
-</div>
+
 <!-- Image Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-6 ">
     {!! Form::label('image', 'Image Uploads or Error Log:') !!}
     <br/>
     <img src="{{$ticket->getFirstMediaUrl('document', 'thumb')}}" />
 
 
-{{--    <div class="needsclick dropzone" id="document-dropzone"></div>--}}
+    {{--    <div class="needsclick dropzone" id="document-dropzone"></div>--}}
 </div>
-<br/><br/>
+<!-- Description Field -->
+<div class="form-group col-sm-6 col-lg-6">
+    {!! Form::label('description', 'Description:') !!}
+    {!! Form::textarea('description', null, ['id' => 'description']) !!}
+</div>
+{{--<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>--}}
+
+
+<!-- Issue Field -->
+<div class="form-group col-sm-6 col-lg-6">
+    {!! Form::label('issue', 'Issue:') !!}
+    {!! Form::textarea('issue', null, ['id' => 'issue']) !!}
+</div>
+
+<!-- Solution Field -->
+<div class="form-group col-sm-6 col-lg-6">
+    {!! Form::label('solution', 'Solution:') !!}
+    {!! Form::textarea('solution', null, ['id' => 'solution']) !!}
+</div>
+
+<!-- Surrender Status Field -->
+<div class="form-group col-sm-6 col-lg-6">
+    {!! Form::hidden('surrender_status', null, ['id' => 'surrender_status']) !!}
+</div>
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
-    {!! Form::submit('Surrender', ['class' => 'btn btn-primary']) !!}
+{{--    {!! Form::submit('Surrender', ['class' => 'btn btn-danger']) !!}--}}
+    <a href="{!! route('tickets.index') !!}" class="btn btn-danger" id="surrender_id">Surrender</a>
     {!! Form::submit('Resolve', ['class' => 'btn btn-primary']) !!}
-    {!! Form::submit('Issue Parts', ['class' => 'btn btn-primary']) !!}
+    {!! Form::submit('Issue Parts', ['class' => 'btn btn-default']) !!}
 </div>
 
 {{--<!-- Submit Field -->--}}
@@ -65,6 +85,8 @@
 
     <script>
         CKEDITOR.replace('description')
+        CKEDITOR.replace('issue')
+        CKEDITOR.replace('solution')
 
     </script>
 @endsection

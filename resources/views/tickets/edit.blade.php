@@ -26,6 +26,7 @@
         jQuery(document).ready(function () {
             CKEDITOR.replace('description')
             $("input[type = 'checkbox']").prop("disabled", true);
+            $("#issue_type_id").prop("disabled", true);
             $('#description').prop("disabled", true);
         })
     </script>

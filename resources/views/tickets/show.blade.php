@@ -25,6 +25,8 @@
         jQuery(document).ready(function () {
             $("input[type = 'checkbox']").prop("disabled", true);
             $('#description').prop("disabled", true);
+            $("#issue_type_id").prop("disabled", true);
+
         })
     </script>
     @endsection
