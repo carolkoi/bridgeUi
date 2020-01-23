@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @SWG\Definition(
- *      definition="Department",
+ *      definition="Category",
  *      required={""},
  *      @SWG\Property(
  *          property="id",
@@ -16,8 +16,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="departments",
- *          description="departments",
+ *          property="category",
+ *          description="category",
  *          type="string"
  *      ),
  *      @SWG\Property(
@@ -40,12 +40,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      )
  * )
  */
-class Department extends Model
+class Category extends Model
 {
     use SoftDeletes;
 
-    public $table = 'departments';
-
+    public $table = 'categories';
+    
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -55,7 +55,7 @@ class Department extends Model
 
 
     public $fillable = [
-        'department'
+        'category'
     ];
 
     /**
@@ -65,7 +65,7 @@ class Department extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'department' => 'string'
+        'category' => 'string'
     ];
 
     /**
@@ -74,8 +74,8 @@ class Department extends Model
      * @var array
      */
     public static $rules = [
-
+        
     ];
 
-
+    
 }

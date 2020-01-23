@@ -2,11 +2,11 @@
 
 namespace App\DataTables;
 
-use App\Models\Department;
+use App\Models\KnowledgebaseArticle;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
 
-class DepartmentDataTable extends DataTable
+class KnowledgebaseArticleDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -18,16 +18,16 @@ class DepartmentDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'departments.datatables_actions');
+        return $dataTable->addColumn('action', 'knowledgebase_articles.datatables_actions');
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Department $model
+     * @param \App\Models\KnowledgebaseArticle $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Department $model)
+    public function query(KnowledgebaseArticle $model)
     {
         return $model->newQuery();
     }
@@ -65,7 +65,11 @@ class DepartmentDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'department'
+            'title',
+            'category_id',
+            'details',
+            'uploads',
+            'ticket_id'
         ];
     }
 
@@ -76,6 +80,6 @@ class DepartmentDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'departmentsdatatable_' . time();
+        return 'knowledgebase_articlesdatatable_' . time();
     }
 }

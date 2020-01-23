@@ -28,6 +28,11 @@
             $("input[type = 'checkbox']").prop("disabled", true);
             $("#issue_type_id").prop("disabled", true);
             $('#description').prop("disabled", true);
+            // $("#assign_to_id").change(function(){
+            //     var value = $("#assign_to_id option:selected").val();
+            //     var theDiv = $(".is" + value);
+            //     $("#assign_to_id option:selected").hide().siblings().removeProp('disabled');
+            // });
         })
     </script>
 @endsection

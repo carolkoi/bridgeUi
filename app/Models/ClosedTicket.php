@@ -4,14 +4,10 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Laravel\Passport\HasApiTokens;
-use Spatie\MediaLibrary\HasMedia\HasMedia;
-use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
-use Spatie\MediaLibrary\Models\Media;
 
 /**
  * @SWG\Definition(
- *      definition="Ticket",
+ *      definition="ClosedTicket",
  *      required={""},
  *      @SWG\Property(
  *          property="id",
@@ -53,6 +49,33 @@ use Spatie\MediaLibrary\Models\Media;
  *          type="string"
  *      ),
  *      @SWG\Property(
+ *          property="assign_to",
+ *          description="assign_to",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="surrender_status",
+ *          description="surrender_status",
+ *          type="boolean"
+ *      ),
+ *      @SWG\Property(
+ *          property="resolved_status",
+ *          description="resolved_status",
+ *          type="boolean"
+ *      ),
+ *      @SWG\Property(
+ *          property="closed_status",
+ *          description="closed_status",
+ *          type="boolean"
+ *      ),
+ *      @SWG\Property(
+ *          property="deleted_at",
+ *          description="deleted_at",
+ *          type="string",
+ *          format="date-time"
+ *      ),
+ *      @SWG\Property(
  *          property="created_at",
  *          description="created_at",
  *          type="string",
@@ -63,36 +86,15 @@ use Spatie\MediaLibrary\Models\Media;
  *          description="updated_at",
  *          type="string",
  *          format="date-time"
- *      ),
- *      @SWG\Property(
- *          property="deleted_at",
- *          description="deleted_at",
- *          type="string",
- *          format="date-time"
  *      )
  * )
  */
-class Ticket extends Model implements HasMedia
+class ClosedTicket extends Model
 {
-    use HasApiTokens, SoftDeletes, HasMediaTrait;
+    use SoftDeletes;
 
-    protected $guarded = [];
-
-    public function registerMediaConversions(Media $media = null)
-    {
-        $this->addMediaConversion('thumb')
-            ->width(200)
-            ->height(200)
-            ->sharpen(10);
-
-        $this->addMediaConversion('square')
-            ->width(412)
-            ->height(412)
-            ->sharpen(10);
-    }
-
-    public $table = 'tickets';
-
+    public $table = 'closed_tickets';
+    
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -110,7 +112,8 @@ class Ticket extends Model implements HasMedia
         'description',
         'assign_to',
         'surrender_status',
-        'resolved_status'
+        'resolved_status',
+        'closed_status'
     ];
 
     /**
@@ -124,10 +127,12 @@ class Ticket extends Model implements HasMedia
         'department_id' => 'integer',
         'issue_type_id' => 'integer',
         'business_continuity_impacted' => 'boolean',
-        'image' => 'array',
+        'image' => 'string',
         'description' => 'string',
         'assign_to' => 'integer',
-
+        'surrender_status' => 'boolean',
+        'resolved_status' => 'boolean',
+        'closed_status' => 'boolean'
     ];
 
     /**
@@ -136,26 +141,8 @@ class Ticket extends Model implements HasMedia
      * @var array
      */
     public static $rules = [
-//        'user_id' => 'required',
-//        'department_id' => 'required',
-        'issue_type_id' => 'required',
-//        'business_continuity_impacted' => 'required',
-        'image' => 'required',
-        'description' => 'required'
-
+        
     ];
 
-
-    public function user(){
-        return $this->belongsTo(User::class, 'user_id');
-    }
-
-    public function department(){
-        return $this->belongsTo(Department::class, 'department_id');
-    }
-
-    public function issue_type(){
-        return $this->belongsTo(IssueType::class, 'issue_type_id');
-    }
-
+    
 }

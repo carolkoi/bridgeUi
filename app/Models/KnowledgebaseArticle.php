@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @SWG\Definition(
- *      definition="Department",
+ *      definition="KnowledgebaseArticle",
  *      required={""},
  *      @SWG\Property(
  *          property="id",
@@ -16,9 +16,31 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="departments",
- *          description="departments",
+ *          property="title",
+ *          description="title",
  *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="category_id",
+ *          description="category_id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="details",
+ *          description="details",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="uploads",
+ *          description="uploads",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="ticket_id",
+ *          description="ticket_id",
+ *          type="integer",
+ *          format="int32"
  *      ),
  *      @SWG\Property(
  *          property="created_at",
@@ -40,12 +62,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      )
  * )
  */
-class Department extends Model
+class KnowledgebaseArticle extends Model
 {
     use SoftDeletes;
 
-    public $table = 'departments';
-
+    public $table = 'Knowledgebase_articles';
+    
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -55,7 +77,11 @@ class Department extends Model
 
 
     public $fillable = [
-        'department'
+        'title',
+        'category_id',
+        'details',
+        'uploads',
+        'ticket_id'
     ];
 
     /**
@@ -65,7 +91,11 @@ class Department extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'department' => 'string'
+        'title' => 'string',
+        'category_id' => 'integer',
+        'details' => 'string',
+        'uploads' => 'string',
+        'ticket_id' => 'integer'
     ];
 
     /**
@@ -74,8 +104,8 @@ class Department extends Model
      * @var array
      */
     public static $rules = [
-
+        
     ];
 
-
+    
 }

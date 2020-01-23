@@ -26,9 +26,15 @@ class TicketDataTable extends DataTable
             ->addColumn('action', 'tickets.datatables_actions')
             ->setRowAttr([
                 'style' => function($query){
-                    return $query->business_continuity_impacted ? 'background-color: #ff0000;' : null;
+                    return $query->business_continuity_impacted ? 'background-color: #ff0000;' :
+                        ($query->surrender_status ? 'background-color: gold;' : null);
                 }
             ]);
+//        ->setRowAttr([
+//        'style' => function($query){
+//            return $query->surrender_status ? 'background-color: gold;' : null;
+//        }
+//    ]);
     }
 
     /**
@@ -39,7 +45,7 @@ class TicketDataTable extends DataTable
      */
     public function query(Ticket $model)
     {
-        return $model->with('user', 'department', 'issue_type')->newQuery();
+        return $model->with('user', 'department', 'issue_type')->where('resolved_status', false)->newQuery();
     }
 
     /**

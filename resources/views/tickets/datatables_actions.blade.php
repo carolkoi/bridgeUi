@@ -1,8 +1,14 @@
+@if($resolved_status)
+    <a href="{{ route('tickets.view', $id) }}" class='btn btn-default btn-sm'>
+        <i class="glyphicon glyphicon-eye-open"></i>
+    </a>
+@else
 {!! Form::open(['route' => ['tickets.destroy', $id], 'method' => 'delete']) !!}
 <div class='btn-group'>
     <a href="{{ route('tickets.show', $id) }}" class='btn btn-default btn-xs'>
         <i class="glyphicon glyphicon-eye-open"></i>
     </a>
+
     <a href="{{ route('tickets.edit', $id) }}" class='btn btn-default btn-xs'>
         <i class="glyphicon glyphicon-edit"></i>
     </a>
@@ -13,3 +19,5 @@
     ]) !!}
 </div>
 {!! Form::close() !!}
+    @endif
+

@@ -5,11 +5,15 @@ namespace App\Http\Controllers;
 use App\DataTables\TicketDataTable;
 use App\Http\Requests;
 use App\Http\Requests\CreateTicketRequest;
+use App\Http\Requests\CreateKnowledgebaseArticleRequest;
 use App\Http\Requests\UpdateTicketRequest;
 use App\Mail\ticketAssigned;
+use App\Models\Category;
 use App\Models\Department;
 use App\Models\IssueType;
+use App\Models\KnowledgebaseArticle;
 use App\Models\User;
+use App\Repositories\KnowledgebaseArticleRepository;
 use App\Repositories\TicketRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
@@ -22,10 +26,12 @@ class TicketController extends AppBaseController
 {
     /** @var  TicketRepository */
     private $ticketRepository;
+    private $knowledgeBaseArticleRepository;
 
-    public function __construct(TicketRepository $ticketRepo)
+    public function __construct(TicketRepository $ticketRepo, KnowledgebaseArticleRepository $knowledgeBaseArticleRepo)
     {
         $this->ticketRepository = $ticketRepo;
+        $this->knowledgeBaseArticleRepository = $knowledgeBaseArticleRepo;
     }
 
     /**
@@ -89,6 +95,7 @@ class TicketController extends AppBaseController
     {
         $ticket = $this->ticketRepository->find($id);
         $issue = IssueType::pluck('issue', 'id');
+        $categories = Category::pluck('category', 'id');
         $user = User::find($ticket->user_id);
         $department = Department::find($ticket->department_id)->department;
 
@@ -101,11 +108,13 @@ class TicketController extends AppBaseController
         return view('tickets.show')->with(['ticket' => $ticket,
             'issue' => $issue,
             'user' => $user,
-            'department' => $department]);
+            'department' => $department,
+            'categories' => $categories]);
     }
 
-    public function resolve($id)
+    public function resolve($id, CreateKnowledgebaseArticleRequest $request)
     {
+//        dd($request->all());
         $ticket = $this->ticketRepository->find($id);
 
         if (empty($ticket)) {
@@ -113,8 +122,70 @@ class TicketController extends AppBaseController
 
             return redirect(route('tickets.index'));
         }
+        $ticket = $this->ticketRepository->update([
+            'resolved_status' => 1,
+            'surrender_status' => 0
+        ], $id);
+        $input = [];
+        $input['ticket_id'] = $request->input('id');
+        $input['title'] = $request->input('title');
+        $input['category_id'] = $request->input('category');
+        $input['details'] = $request->input('issue').$request->input('solution');
 
-        return view('tickets.resolve')->with(['ticket' => $ticket]);
+        $knowledgeBase = $this->knowledgeBaseArticleRepository->create($input);
+
+        Flash::success('Ticket resolved successfully.');
+
+        return redirect(route('tickets.index'));
+    }
+
+    public function surrender($id, Request $request)
+    {
+//        dd($id);
+        $ticket = $this->ticketRepository->find($id);
+        $ticket = $this->ticketRepository->update([
+            'surrender_status' => 1
+        ], $id);
+        return $ticket;
+
+    }
+
+    public function view($id)
+    {
+        $ticket = $this->ticketRepository->find($id);
+        $issue = IssueType::pluck('issue', 'id');
+        $categories = Category::pluck('category', 'id');
+        $user = User::find($ticket->user_id);
+        $department = Department::find($ticket->department_id)->department;
+        $ict_staffs = User::with('tickets')->where(['ict_staff' => true])->pluck('name', 'id');
+        $knowledge_base = KnowledgebaseArticle::where('ticket_id', $id)->get();
+        if (empty($ticket)) {
+            Flash::error('Ticket not found');
+
+            return redirect(route('tickets.index'));
+        }
+
+        return view('tickets.resolve')->with(['ticket' => $ticket,
+            'issue' => $issue,
+            'user' => $user,
+            'department' => $department,
+            'categories' => $categories,
+            'ict_staffs' => $ict_staffs,
+            'knowledge_base' => $knowledge_base]);
+
+    }
+
+    public function close($id, Request $request)
+    {
+        dd($request->all());
+        $ticket = $this->ticketRepository->find($id);
+        $ticket = $this->ticketRepository->update([
+            'closed_status' => 1
+        ], $id);
+        Flash::success('Ticket successfully resolved and closed.');
+
+        return redirect(route('resolvedTickets.index'));
+
     }
 
     /**
@@ -127,10 +198,10 @@ class TicketController extends AppBaseController
     public function edit($id)
     {
         $ticket = $this->ticketRepository->find($id);
+        $surrender_status = $ticket->surrender_status;
         $issues = IssueType::pluck('issue', 'id');
-        $ict_staffs = User::where('ict_staff', true)->pluck('name', 'id');
 
-
+        $ict_staffs = User::with('tickets')->where(['ict_staff' => true])->pluck('name', 'id');
 
         if (empty($ticket)) {
             Flash::error('Ticket not found');
@@ -138,7 +209,8 @@ class TicketController extends AppBaseController
             return redirect(route('tickets.index'));
         }
 
-        return view('tickets.edit')->with(['ticket' => $ticket, 'issues' => $issues, 'ict_staffs' => $ict_staffs]);
+        return view('tickets.edit')->with(['ticket' => $ticket, 'issues' => $issues,
+            'ict_staffs' => $ict_staffs, 'surrender_status' => $surrender_status]);
     }
 
     /**

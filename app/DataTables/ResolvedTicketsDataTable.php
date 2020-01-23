@@ -2,11 +2,11 @@
 
 namespace App\DataTables;
 
-use App\Models\Department;
+use App\Models\Ticket;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
 
-class DepartmentDataTable extends DataTable
+class ResolvedTicketsDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -18,18 +18,34 @@ class DepartmentDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'departments.datatables_actions');
+        return $dataTable
+            ->addColumn('staff', 'tickets.datatables_staff')
+            ->addColumn('department', 'tickets.datatables_department')
+            ->addColumn('location', 'tickets.datatables_location')
+            ->addColumn('issue_type', 'tickets.datatables_issue')
+            ->addColumn('action', 'tickets.datatables_actions')
+            ->setRowAttr([
+                'style' => function($query){
+                    return $query->business_continuity_impacted ? 'background-color: #ff0000;' :
+                        ($query->surrender_status ? 'background-color: gold;' : null);
+                }
+            ]);
+//        ->setRowAttr([
+//        'style' => function($query){
+//            return $query->surrender_status ? 'background-color: gold;' : null;
+//        }
+//    ]);
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Department $model
+     * @param \App\Models\ResolvedTickets $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Department $model)
+    public function query(Ticket $model)
     {
-        return $model->newQuery();
+        return $model->with('user', 'department', 'issue_type')->where('resolved_status', true)->newQuery();
     }
 
     /**
@@ -65,7 +81,10 @@ class DepartmentDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'department'
+            'staff',
+            'department',
+            'location',
+            'issue_type',
         ];
     }
 
@@ -76,6 +95,6 @@ class DepartmentDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'departmentsdatatable_' . time();
+        return 'resolved_ticketsdatatable_' . time();
     }
 }

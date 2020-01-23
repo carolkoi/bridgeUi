@@ -2,11 +2,11 @@
 
 namespace App\DataTables;
 
-use App\Models\Department;
+use App\Models\ClosedTicket;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
 
-class DepartmentDataTable extends DataTable
+class ClosedTicketDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -18,16 +18,16 @@ class DepartmentDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'departments.datatables_actions');
+        return $dataTable->addColumn('action', 'closed_tickets.datatables_actions');
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Department $model
+     * @param \App\Models\ClosedTicket $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Department $model)
+    public function query(ClosedTicket $model)
     {
         return $model->newQuery();
     }
@@ -65,7 +65,16 @@ class DepartmentDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'department'
+            'user_id',
+            'department_id',
+            'issue_type_id',
+            'business_continuity_impacted',
+            'image',
+            'description',
+            'assign_to',
+            'surrender_status',
+            'resolved_status',
+            'closed_status'
         ];
     }
 
@@ -76,6 +85,6 @@ class DepartmentDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'departmentsdatatable_' . time();
+        return 'closed_ticketsdatatable_' . time();
     }
 }

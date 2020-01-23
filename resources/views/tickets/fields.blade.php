@@ -50,10 +50,24 @@
 
 <!--assign field -->
 @if(isset($ticket))
+
+    @if($surrender_status == 1)
+    <div class="form-group col-sm-6">
+        {!! Form::label('assign_to', 'Ticket previously assigned to:') !!}
+        {!! Form::select('assign_to', $ict_staffs, null, ['class' => 'form-control select2', 'disabled' => 'disabled']) !!}
+    </div>
+    <div class="form-group col-sm-6">
+        {!! Form::label('assign_to', 'Reassigned to:') !!}
+        {!! Form::select('assign_to', $ict_staffs, null, ['class' => 'form-control select2', 'id' => 'assign_to_id' ]) !!}
+    </div>
+    @else
+
     <div class="form-group col-sm-6">
         {!! Form::label('assign_to', 'Assigned to:') !!}
-        {!! Form::select('assign_to', $ict_staffs, null, ['class' => 'form-control select2']) !!}
+        {!! Form::select('assign_to', $ict_staffs, null, ['class' => 'form-control select2', 'id' => 'assign_to_id' ]) !!}
     </div>
+        @endif
+
     @endif
 
 <!-- Submit Field -->

@@ -1,3 +1,8 @@
+<!--  Id Field -->
+    {!! Form::hidden('id', $ticket->id, ['id' => 'ticket_id']) !!}
+<!-- Surrender Status Field -->
+{!! Form::hidden('surrender_status', null, ['id' => 'surrender_status']) !!}
+
 <!-- User Id Field -->
 <div class="form-group col-sm-4">
     {!! Form::label('user_id', 'Staff:') !!}
@@ -49,7 +54,8 @@
 </div>
 {{--<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>--}}
 
-
+<!-- Ticket resolving div-->
+<div class="col-md-12 resolveTicket">
 <!-- Issue Field -->
 <div class="form-group col-sm-6 col-lg-6">
     {!! Form::label('issue', 'Issue:') !!}
@@ -62,17 +68,25 @@
     {!! Form::textarea('solution', null, ['id' => 'solution']) !!}
 </div>
 
-<!-- Surrender Status Field -->
-<div class="form-group col-sm-6 col-lg-6">
-    {!! Form::hidden('surrender_status', null, ['id' => 'surrender_status']) !!}
+<!-- title Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('title', 'Title:') !!}
+    {!! Form::text('title', null, ['class' => 'form-control']) !!}
+</div>
+<!-- Category Id Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('category', 'Category:') !!}
+    {!! Form::select('category', $categories, null, ['class' => 'form-control select2', 'id' => 'category_id']) !!}
+</div>
 </div>
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
-{{--    {!! Form::submit('Surrender', ['class' => 'btn btn-danger']) !!}--}}
-    <a href="{!! route('tickets.index') !!}" class="btn btn-danger" id="surrender_id">Surrender</a>
-    {!! Form::submit('Resolve', ['class' => 'btn btn-primary']) !!}
-    {!! Form::submit('Issue Parts', ['class' => 'btn btn-default']) !!}
+    <button type="button" class="btn btn-danger" id="surrender_id"> Surrender</button>
+    {!! Form::submit('Resolve', ['class' => 'btn btn-primary', 'id' => 'resolve_submit_id']) !!}
+{{--    {!! Form::submit('Issue Parts', ['class' => 'btn btn-default']) !!}--}}
+    <button type="button" class="btn btn-primary" id="resolve_id"> Resolve</button>
+    <button type="button" class="btn btn-default" id="issue_parts_id"> Issue Parts</button>
 </div>
 
 {{--<!-- Submit Field -->--}}

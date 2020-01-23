@@ -19,3 +19,19 @@
 </li>
 
 
+<li class="{{ Request::is('categories*') ? 'active' : '' }}">
+    <a href="{{ route('categories.index') }}"><i class="fa fa-edit"></i><span>Categories</span></a>
+</li>
+
+<li class="{{ Request::is('knowledgebaseArticles*') ? 'active' : '' }}">
+    <a href="{{ route('knowledgebaseArticles.index') }}"><i class="fa fa-edit"></i><span>Knowledgebase Articles</span></a>
+</li>
+
+<li class="{{ Request::is('resolvedTickets*') ? 'active' : '' }}">
+    <a href="{{ route('resolvedTickets.index') }}"><i class="fa fa-edit"></i><span>Resolved Tickets</span></a>
+</li>
+
+<li class="{{ Request::is('closedTickets*') ? 'active' : '' }}">
+    <a href="{{ route('closedTickets.index') }}"><i class="fa fa-edit"></i><span>Closed Tickets</span></a>
+</li>
+

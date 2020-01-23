@@ -58,4 +58,17 @@ Route::get('/hr-staff-list', function () {
     return UserResource::collection(User::where('ict_staff', false)->paginate(10));
 });
 Route::post('ict-staffs', 'UserController@updateIctStaff');
+Route::post('/ticket-surrender/{id}', 'TicketController@surrender')->name('tickets.surrender');
+Route::patch('/ticket/resolve/{id}', 'TicketController@resolve')->name('tickets.resolve');
 
+
+Route::resource('categories', 'CategoryController');
+
+Route::resource('knowledgebaseArticles', 'KnowledgebaseArticleController');
+
+
+Route::resource('resolvedTickets', 'ResolvedTicketsController');
+Route::get('resolvedTickets/view/{id}', 'TicketController@view')->name('tickets.view');
+Route::patch('resolvedTickets/close/{id}', 'TicketController@view')->name('tickets.close');
+
+Route::resource('closedTickets', 'ClosedTicketController');

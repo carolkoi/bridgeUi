@@ -11,7 +11,7 @@
         <div class="box box-primary">
             <div class="box-body">
                 <div class="row">
-                    {!! Form::model($ticket, ['route' => ['tickets.resolve', $ticket->id], 'method' => 'patch']) !!}
+                    {!! Form::model($ticket, ['route' => ['tickets.close', $ticket->id], 'method' => 'patch']) !!}
 
                     @include('tickets.resolve_fields')
 
@@ -21,3 +21,11 @@
         </div>
     </div>
 @endsection
+@section('scripts')
+    <script>
+        jQuery(document).ready(function () {
+            $("input[type = 'checkbox']").prop("disabled", true);
+            $('#description, #issue_type_id, #assign_to_id, #category_id').prop("disabled", true);
+        });
+    </script>
+    @endsection
