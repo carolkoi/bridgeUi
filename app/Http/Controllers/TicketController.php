@@ -158,7 +158,6 @@ class TicketController extends AppBaseController
         $user = User::find($ticket->user_id);
         $department = Department::find($ticket->department_id)->department;
         $ict_staffs = User::with('tickets')->where(['ict_staff' => true])->pluck('name', 'id');
-        $knowledge_base = KnowledgebaseArticle::where('ticket_id', $id)->get();
         if (empty($ticket)) {
             Flash::error('Ticket not found');
 
@@ -170,8 +169,7 @@ class TicketController extends AppBaseController
             'user' => $user,
             'department' => $department,
             'categories' => $categories,
-            'ict_staffs' => $ict_staffs,
-            'knowledge_base' => $knowledge_base]);
+            'ict_staffs' => $ict_staffs]);
 
     }
 

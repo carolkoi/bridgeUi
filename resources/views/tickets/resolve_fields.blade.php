@@ -64,25 +64,23 @@
     <!-- Issue Field -->
     <div class="form-group col-sm-6 col-lg-6">
         {!! Form::label('issue', 'Issue:') !!}
-        {!! Form::textarea('issue', $knowledge_base->details, ['id' => 'issue']) !!}
+        {!! Form::textarea('issue', $ticket->issue, ['id' => 'issue']) !!}
     </div>
 
     <!-- Solution Field -->
     <div class="form-group col-sm-6 col-lg-6">
         {!! Form::label('solution', 'Solution:') !!}
-        {!! Form::textarea('solution', $knowledge_base->details, ['id' => 'solution']) !!}
+        {!! Form::textarea('solution', $ticket->solution, ['id' => 'solution']) !!}
     </div>
 
-    <!-- title Field -->
-    <div class="form-group col-sm-6">
-        {!! Form::label('title', 'Title:') !!}
-        {!! Form::text('title', $knowledge_base->title, ['class' => 'form-control']) !!}
-    </div>
-    <!-- Category Id Field -->
-    <div class="form-group col-sm-6">
-        {!! Form::label('category', 'Category:') !!}
-        {!! Form::select('category', $categories, null, ['class' => 'form-control select2', 'id' => 'category_id']) !!}
-    </div>
+</div>
+<!-- closed status Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('closed_status', 'Mark ticket as closed:') !!}
+    {{--    <label class="checkbox-inline">--}}
+    {{--        {!! Form::hidden('business_continuity_impacted', 0) !!}--}}
+    {!! Form::checkbox('closed_status', null) !!}
+    {{--    </label>--}}
 </div>
 
 <!-- Submit Field -->
