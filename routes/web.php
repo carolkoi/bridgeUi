@@ -49,7 +49,17 @@ Route::resource('departments', 'DepartmentController');
 
 Route::resource('tickets', 'TicketController');
 
-Route::resource('issueTypes', 'IssueTypeController');
+Route::prefix('all')->group(function () {
+    Route::resource('tickets', 'TicketController');
+    Route::resource('resolvedTickets', 'ResolvedTicketsController');
+    Route::resource('closedTickets', 'ClosedTicketController');
+});
+Route::prefix('settings')->group(function () {
+    Route::resource('users', 'UserController');
+    Route::resource('issueTypes', 'IssueTypeController');
+    Route::resource('categories', 'CategoryController');
+});
+
 Route::post('tickets/media', 'TicketController@storeMedia')
     ->name('tickets.storeMedia');
 Route::post('tickets/resolve', 'TicketController@resolve')
@@ -62,13 +72,18 @@ Route::post('/ticket-surrender/{id}', 'TicketController@surrender')->name('ticke
 Route::patch('/ticket/resolve/{id}', 'TicketController@resolve')->name('tickets.resolve');
 
 
-Route::resource('categories', 'CategoryController');
+
 
 Route::resource('knowledgebaseArticles', 'KnowledgebaseArticleController');
 
 
-Route::resource('resolvedTickets', 'ResolvedTicketsController');
-Route::get('resolvedTickets/view/{id}', 'TicketController@view')->name('tickets.view');
-Route::patch('resolvedTickets/close/{id}', 'TicketController@view')->name('tickets.close');
 
-Route::resource('closedTickets', 'ClosedTicketController');
+Route::get('resolvedTickets/view/{id}', 'TicketController@view')->name('tickets.view');
+Route::patch('resolvedTickets/close/{id}', 'TicketController@close')->name('tickets.close');
+
+
+
+
+Route::resource('items', 'ItemController');
+
+Route::resource('assets', 'AssetController');

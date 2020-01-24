@@ -63,7 +63,7 @@
     @else
 
     <div class="form-group col-sm-6">
-        {!! Form::label('assign_to', 'Assigned to:') !!}
+        {!! Form::label('assign_to', 'Assign Ticket to:') !!}
         {!! Form::select('assign_to', $ict_staffs, null, ['class' => 'form-control select2', 'id' => 'assign_to_id' ]) !!}
     </div>
         @endif

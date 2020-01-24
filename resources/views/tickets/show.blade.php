@@ -31,10 +31,14 @@
             $("input[type = 'checkbox']").prop("disabled", true);
             $('#description').prop("disabled", true);
             $("#issue_type_id").prop("disabled", true);
-            $('.resolveTicket, #resolve_submit_id, #issue_parts_id').css({'display':'none'});
+            $('.resolveTicket,.issueParts, #resolve_submit_id, #issue_parts_id').css({'display':'none'});
             $('#resolve_id').on('click', function () {
                 $('.resolveTicket, #resolve_submit_id, #issue_parts_id').show();
                 $('#resolve_id').hide();
+            });
+            $('#issue_parts_id').on('click', function () {
+                $('.issueParts').show();
+                $('#issue_parts_id').hide();
             });
 
 

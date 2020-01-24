@@ -6,11 +6,14 @@ use App\DataTables\TicketDataTable;
 use App\Http\Requests;
 use App\Http\Requests\CreateTicketRequest;
 use App\Http\Requests\CreateKnowledgebaseArticleRequest;
+use App\Http\Requests\UpdateResolvedTicketsRequest;
 use App\Http\Requests\UpdateTicketRequest;
 use App\Mail\ticketAssigned;
+use App\Models\Asset;
 use App\Models\Category;
 use App\Models\Department;
 use App\Models\IssueType;
+use App\Models\Item;
 use App\Models\KnowledgebaseArticle;
 use App\Models\User;
 use App\Repositories\KnowledgebaseArticleRepository;
@@ -98,6 +101,8 @@ class TicketController extends AppBaseController
         $categories = Category::pluck('category', 'id');
         $user = User::find($ticket->user_id);
         $department = Department::find($ticket->department_id)->department;
+        $items = Item::pluck('name', 'id');
+        $assets = Asset::pluck('name', 'id');
 
         if (empty($ticket)) {
             Flash::error('Ticket not found');
@@ -109,10 +114,12 @@ class TicketController extends AppBaseController
             'issue' => $issue,
             'user' => $user,
             'department' => $department,
-            'categories' => $categories]);
+            'categories' => $categories,
+            'items' => $items,
+            'assets' => $assets]);
     }
 
-    public function resolve($id, CreateKnowledgebaseArticleRequest $request)
+    public function resolve($id, UpdateResolvedTicketsRequest $request)
     {
 //        dd($request->all());
         $ticket = $this->ticketRepository->find($id);
@@ -124,7 +131,9 @@ class TicketController extends AppBaseController
         }
         $ticket = $this->ticketRepository->update([
             'resolved_status' => 1,
-            'surrender_status' => 0
+            'surrender_status' => 0,
+            'issue' => $request->input('issue'),
+            'solution' => $request->input('solution')
         ], $id);
         $input = [];
         $input['ticket_id'] = $request->input('id');
@@ -175,14 +184,14 @@ class TicketController extends AppBaseController
 
     public function close($id, Request $request)
     {
-        dd($request->all());
+//        dd($request->input('closed_status'));
         $ticket = $this->ticketRepository->find($id);
         $ticket = $this->ticketRepository->update([
-            'closed_status' => 1
+            'closed_status' => $request->input('closed_status')
         ], $id);
         Flash::success('Ticket successfully resolved and closed.');
 
-        return redirect(route('resolvedTickets.index'));
+        return redirect(route('closedTickets.index'));
 
     }
 

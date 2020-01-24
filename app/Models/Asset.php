@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @SWG\Definition(
- *      definition="KnowledgebaseArticle",
+ *      definition="Asset",
  *      required={""},
  *      @SWG\Property(
  *          property="id",
@@ -16,31 +16,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="title",
- *          description="title",
+ *          property="name",
+ *          description="name",
  *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="category_id",
- *          description="category_id",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="details",
- *          description="details",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="uploads",
- *          description="uploads",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="ticket_id",
- *          description="ticket_id",
- *          type="integer",
- *          format="int32"
  *      ),
  *      @SWG\Property(
  *          property="created_at",
@@ -62,12 +40,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      )
  * )
  */
-class KnowledgebaseArticle extends Model
+class Asset extends Model
 {
     use SoftDeletes;
 
-    public $table = 'Knowledgebase_articles';
-
+    public $table = 'assets';
+    
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -77,11 +55,7 @@ class KnowledgebaseArticle extends Model
 
 
     public $fillable = [
-        'title',
-        'category_id',
-        'details',
-        'uploads',
-        'ticket_id'
+        'name'
     ];
 
     /**
@@ -91,11 +65,7 @@ class KnowledgebaseArticle extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'title' => 'string',
-        'category_id' => 'integer',
-        'details' => 'string',
-        'uploads' => 'string',
-        'ticket_id' => 'integer'
+        'name' => 'string'
     ];
 
     /**
@@ -104,13 +74,8 @@ class KnowledgebaseArticle extends Model
      * @var array
      */
     public static $rules = [
-        'title' => 'required',
-        'category_id' => 'required',
-//        'details' => 'required',
-//        'uploads' => 'string',
-        'ticket_id' => 'required'
-
+        
     ];
 
-
+    
 }

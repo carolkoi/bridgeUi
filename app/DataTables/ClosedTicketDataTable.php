@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\ClosedTicket;
+use App\Models\Ticket;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
 
@@ -18,7 +18,13 @@ class ClosedTicketDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'closed_tickets.datatables_actions');
+        return $dataTable
+            ->addColumn('staff', 'tickets.datatables_staff')
+            ->addColumn('department', 'tickets.datatables_department')
+            ->addColumn('location', 'tickets.datatables_location')
+            ->addColumn('issue_type', 'tickets.datatables_issue')
+            ->addColumn('action', 'tickets.datatables_actions');
+
     }
 
     /**
@@ -27,9 +33,9 @@ class ClosedTicketDataTable extends DataTable
      * @param \App\Models\ClosedTicket $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(ClosedTicket $model)
+    public function query(Ticket $model)
     {
-        return $model->newQuery();
+        return $model->with('user', 'department', 'issue_type')->where(['closed_status' => true, 'resolved_status' => true])->newQuery();
     }
 
     /**
@@ -65,16 +71,10 @@ class ClosedTicketDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'user_id',
-            'department_id',
-            'issue_type_id',
-            'business_continuity_impacted',
-            'image',
-            'description',
-            'assign_to',
-            'surrender_status',
-            'resolved_status',
-            'closed_status'
+            'staff',
+            'department',
+            'location',
+            'issue_type',
         ];
     }
 

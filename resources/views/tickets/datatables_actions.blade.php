@@ -3,21 +3,21 @@
         <i class="glyphicon glyphicon-eye-open"></i>
     </a>
 @else
-{!! Form::open(['route' => ['tickets.destroy', $id], 'method' => 'delete']) !!}
-<div class='btn-group'>
-    <a href="{{ route('tickets.show', $id) }}" class='btn btn-default btn-xs'>
-        <i class="glyphicon glyphicon-eye-open"></i>
-    </a>
+{{--{!! Form::open(['route' => ['tickets.destroy', $id], 'method' => 'delete']) !!}--}}
+{{--<div class='btn-group'>--}}
+{{--    <a href="{{ route('tickets.show', $id) }}" class='btn btn-default btn-xs'>--}}
+{{--        <i class="glyphicon glyphicon-eye-open"></i>--}}
+{{--    </a>--}}
 
-    <a href="{{ route('tickets.edit', $id) }}" class='btn btn-default btn-xs'>
-        <i class="glyphicon glyphicon-edit"></i>
+    <a href="{{ route('tickets.edit', $id) }}" class='btn btn-primary'>
+        Assign</i>
     </a>
-    {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', [
-        'type' => 'submit',
-        'class' => 'btn btn-danger btn-xs',
-        'onclick' => "return confirm('Are you sure?')"
-    ]) !!}
-</div>
+{{--    {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', [--}}
+{{--        'type' => 'submit',--}}
+{{--        'class' => 'btn btn-danger btn-xs',--}}
+{{--        'onclick' => "return confirm('Are you sure?')"--}}
+{{--    ]) !!}--}}
+{{--</div>--}}
 {!! Form::close() !!}
     @endif
 

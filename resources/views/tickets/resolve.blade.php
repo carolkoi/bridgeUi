@@ -24,8 +24,8 @@
 @section('scripts')
     <script>
         jQuery(document).ready(function () {
-            $("input[type = 'checkbox']").prop("disabled", true);
-            $('#description, #issue_type_id, #assign_to_id, #category_id').prop("disabled", true);
+            $("input[name = 'business_continuity_impacted']").prop("disabled", true);
+            $('#description, #issue_type_id, #assign_to_id, #category_id, #issue, #solution, #closed_status_id').prop("disabled", true);
         });
     </script>
     @endsection

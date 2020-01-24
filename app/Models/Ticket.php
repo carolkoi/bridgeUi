@@ -110,7 +110,10 @@ class Ticket extends Model implements HasMedia
         'description',
         'assign_to',
         'surrender_status',
-        'resolved_status'
+        'resolved_status',
+        'closed_status',
+        'issue',
+        'solution'
     ];
 
     /**
