@@ -90,7 +90,7 @@ class TicketController extends AppBaseController
     /**
      * Display the specified Ticket.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return Response
      */
@@ -133,13 +133,13 @@ class TicketController extends AppBaseController
             'resolved_status' => 1,
             'surrender_status' => 0,
             'issue' => $request->input('issue'),
-            'solution' => $request->input('solution')
+            'solution' => $request->input('solution'),
         ], $id);
         $input = [];
         $input['ticket_id'] = $request->input('id');
         $input['title'] = $request->input('title');
         $input['category_id'] = $request->input('category');
-        $input['details'] = $request->input('issue').$request->input('solution');
+        $input['details'] = $request->input('issue') . $request->input('solution');
 
         $knowledgeBase = $this->knowledgeBaseArticleRepository->create($input);
 
@@ -198,7 +198,7 @@ class TicketController extends AppBaseController
     /**
      * Show the form for editing the specified Ticket.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return Response
      */
@@ -223,7 +223,7 @@ class TicketController extends AppBaseController
     /**
      * Update the specified Ticket in storage.
      *
-     * @param  int              $id
+     * @param int $id
      * @param UpdateTicketRequest $request
      *
      * @return Response
@@ -250,7 +250,7 @@ class TicketController extends AppBaseController
     /**
      * Remove the specified Ticket from storage.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return Response
      */
@@ -271,7 +271,8 @@ class TicketController extends AppBaseController
         return redirect(route('tickets.index'));
     }
 
-    public function storeMedia(Request $request){
+    public function storeMedia(Request $request)
+    {
         $path = storage_path('tmp/uploads');
 
         if (!file_exists($path)) {
@@ -285,9 +286,23 @@ class TicketController extends AppBaseController
         $file->move($path, $name);
 
         return response()->json([
-            'name'          => $name,
+            'name' => $name,
             'original_name' => $file->getClientOriginalName(),
         ]);
 
     }
+
+    public function issueParts($id, Request $request)
+    {
+        $ticket = $this->ticketRepository->find($id);
+
+        $request['selectedItems'] = json_encode($request->get('selectedItems'));
+        $ticket = $this->ticketRepository->update([
+            'selected_items' => $request['selectedItems']
+        ], $id);
+
+
+
+    }
+
 }

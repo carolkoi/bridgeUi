@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @SWG\Definition(
- *      definition="KnowledgebaseArticle",
+ *      definition="MaintenanceSchedule",
  *      required={""},
  *      @SWG\Property(
  *          property="id",
@@ -16,31 +16,33 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="title",
- *          description="title",
+ *          property="name",
+ *          description="name",
  *          type="string"
  *      ),
  *      @SWG\Property(
- *          property="category_id",
- *          description="category_id",
+ *          property="department_id",
+ *          description="department_id",
  *          type="integer",
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="details",
- *          description="details",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="uploads",
- *          description="uploads",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="ticket_id",
- *          description="ticket_id",
+ *          property="asset_id",
+ *          description="asset_id",
  *          type="integer",
  *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="cycle_id",
+ *          description="cycle_id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="start_date",
+ *          description="start_date",
+ *          type="string",
+ *          format="date-time"
  *      ),
  *      @SWG\Property(
  *          property="created_at",
@@ -62,12 +64,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      )
  * )
  */
-class KnowledgebaseArticle extends Model
+class MaintenanceSchedule extends Model
 {
     use SoftDeletes;
 
-    public $table = 'Knowledgebase_articles';
-
+    public $table = 'maintenance_shedules';
+    
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -77,11 +79,11 @@ class KnowledgebaseArticle extends Model
 
 
     public $fillable = [
-        'title',
-        'category_id',
-        'details',
-        'uploads',
-        'ticket_id'
+        'name',
+        'department_id',
+        'asset_id',
+        'cycle_id',
+        'start_date'
     ];
 
     /**
@@ -91,11 +93,11 @@ class KnowledgebaseArticle extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'title' => 'string',
-        'category_id' => 'integer',
-        'details' => 'string',
-        'uploads' => 'string',
-        'ticket_id' => 'integer'
+        'name' => 'string',
+        'department_id' => 'integer',
+        'asset_id' => 'integer',
+        'cycle_id' => 'integer',
+        'start_date' => 'datetime'
     ];
 
     /**
@@ -104,17 +106,8 @@ class KnowledgebaseArticle extends Model
      * @var array
      */
     public static $rules = [
-        'title' => 'required',
-        'category_id' => 'required',
-//        'details' => 'required',
-//        'uploads' => 'string',
-        'ticket_id' => 'required'
-
+        
     ];
 
-    public function category(){
-        return $this->belongsTo(Category::class, 'category_id');
-    }
-
-
+    
 }

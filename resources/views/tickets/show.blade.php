@@ -1,5 +1,9 @@
 @extends('layouts.app')
-
+<style>
+    .fa{
+        font-size: 35px;
+    }
+</style>
 @section('content')
     <section class="content-header">
         <h1>
@@ -31,15 +35,26 @@
             $("input[type = 'checkbox']").prop("disabled", true);
             $('#description').prop("disabled", true);
             $("#issue_type_id").prop("disabled", true);
-            $('.resolveTicket,.issueParts, #resolve_submit_id, #issue_parts_id').css({'display':'none'});
+            $('.resolveTicket,.issueParts, #resolve_submit_id, #issue_parts_id, #available_quantity_id, #show_part_id').css({'display':'none'});
             $('#resolve_id').on('click', function () {
                 $('.resolveTicket, #resolve_submit_id, #issue_parts_id').show();
                 $('#resolve_id').hide();
             });
             $('#issue_parts_id').on('click', function () {
                 $('.issueParts').show();
-                $('#issue_parts_id').hide();
+                $('#issue_parts_id, #resolve_submit_id, #surrender_id').hide();
             });
+
+            $('#request_part_id').on('click', function () {
+                $('.issueParts').hide();
+                $('#resolve_submit_id, #show_part_id').show();
+            });
+            $('#show_part_id').on('click', function () {
+                $('.issueParts').show();
+                $('#show_part_id').hide();
+                $('#resolve_submit_id').show();
+            });
+
 
 
             $('#surrender_id').on('click', function () {

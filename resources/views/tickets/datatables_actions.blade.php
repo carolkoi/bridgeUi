@@ -9,7 +9,7 @@
 {{--        <i class="glyphicon glyphicon-eye-open"></i>--}}
 {{--    </a>--}}
 
-    <a href="{{ route('tickets.edit', $id) }}" class='btn btn-primary'>
+    <a href="{{ url('tickets/assign/'.$id) }}" class='btn btn-primary'>
         Assign</i>
     </a>
 {{--    {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', [--}}

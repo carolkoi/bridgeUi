@@ -79,30 +79,31 @@
 </div>
 </div>
 <div class="col-md-12 issueParts">
-    <h3>Parts Issuance Form</h3>
-    <!-- Part Id Field -->
-    <div class="form-group col-sm-3">
-        {!! Form::label('item_id', 'Select Parts:') !!}
-        {!! Form::select('item_id', $items, null, ['class' => 'form-control select2', 'id' => 'item_id']) !!}
-    </div>
+{{--    <h3>Parts Issuance Form</h3>--}}
+    <part-component :data="{{json_encode($ticket->id)}}"></part-component>
+{{--    <!-- Part Id Field -->--}}
+{{--    <div class="form-group col-sm-3">--}}
+{{--        {!! Form::label('item_id', 'Select Parts:') !!}--}}
+{{--        {!! Form::select('item_id', $items, null, ['class' => 'form-control select2', 'id' => 'item_id']) !!}--}}
+{{--    </div>--}}
 
-    <!-- Asset Id Field -->
-    <div class="form-group col-sm-3">
-        {!! Form::label('asset_id', 'Select Hardware / Asset:') !!}
-        {!! Form::select('item_id', $assets, null, ['class' => 'form-control select2', 'id' => 'asset_id']) !!}
-    </div>
+{{--    <!-- Asset Id Field -->--}}
+{{--    <div class="form-group col-sm-3">--}}
+{{--        {!! Form::label('asset_id', 'Select Hardware / Asset:') !!}--}}
+{{--        {!! Form::select('isset_id', $assets, null, ['class' => 'form-control select2', 'id' => 'asset_id']) !!}--}}
+{{--    </div>--}}
 
-    <!-- Quantity Required Field -->
-    <div class="form-group col-sm-3">
-        {!! Form::label('issued_quantity', 'Required Quantity:') !!}
-        {!! Form::number('issued_quantity', null, ['class' => 'form-control']) !!}
-    </div>
+{{--    <!-- Quantity Required Field -->--}}
+{{--    <div class="form-group col-sm-3">--}}
+{{--        {!! Form::label('issued_quantity', 'Required Quantity:') !!}--}}
+{{--        {!! Form::number('issued_quantity', null, ['class' => 'form-control', 'id' => 'issued_quantity_id']) !!}--}}
+{{--    </div>--}}
 
-    <!-- Available Quantity Field -->
-    <div class="form-group col-sm-3">
-        {!! Form::label('available_quantity', 'Available Quantity:') !!}
-        {!! Form::number('available_quantity', null, ['class' => 'form-control']) !!}
-    </div>
+{{--    <!-- Available Quantity Field -->--}}
+{{--    <div class="form-group col-sm-3" id = "available_quantity_id">--}}
+{{--        {!! Form::label('available_quantity', 'Available Quantity:') !!}--}}
+{{--        {!! Form::number('available_quantity', null, ['class' => 'form-control']) !!}--}}
+{{--    </div>--}}
 </div>
 
 <!-- Submit Field -->
@@ -111,6 +112,7 @@
     {!! Form::submit('Resolve', ['class' => 'btn btn-primary', 'id' => 'resolve_submit_id']) !!}
     <button type="button" class="btn btn-primary" id="resolve_id"> Resolve</button>
     <button type="button" class="btn btn-default" id="issue_parts_id"> Issue Parts</button>
+    <button type="button" class="btn btn-default" id="show_part_id"> Show Parts</button>
 </div>
 
 

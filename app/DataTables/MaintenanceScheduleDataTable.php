@@ -2,11 +2,11 @@
 
 namespace App\DataTables;
 
-use App\Models\KnowledgebaseArticle;
+use App\Models\MaintenanceSchedule;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
 
-class KnowledgebaseArticleDataTable extends DataTable
+class MaintenanceScheduleDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -18,22 +18,18 @@ class KnowledgebaseArticleDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable
-            ->addColumn('category', 'knowledgebase_articles.datatables_category')
-            ->editColumn('details', 'knowledgebase_articles.datatables_details')
-            ->escapeColumns('details')
-            ->addColumn('action', 'knowledgebase_articles.datatables_actions');
+        return $dataTable->addColumn('action', 'maintenance_schedules.datatables_actions');
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\KnowledgebaseArticle $model
+     * @param \App\Models\MaintenanceSchedule $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(KnowledgebaseArticle $model)
+    public function query(MaintenanceSchedule $model)
     {
-        return $model->with('category')->newQuery();
+        return $model->newQuery();
     }
 
     /**
@@ -69,11 +65,11 @@ class KnowledgebaseArticleDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'title',
-            'category',
-            'details',
-//            'uploads',
-//            'ticket_id'
+            'name',
+            'department_id',
+            'asset_id',
+            'cycle_id',
+            'start_date'
         ];
     }
 
@@ -84,6 +80,6 @@ class KnowledgebaseArticleDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'knowledgebase_articlesdatatable_' . time();
+        return 'maintenance_schedulesdatatable_' . time();
     }
 }

@@ -11,8 +11,12 @@
 |
 */
 
+use App\Models\Item;
+use App\Models\Asset;
 use Illuminate\Support\Facades\Route;
 use App\Http\Resources\User as UserResource;
+use App\Http\Resources\Item as ItemResource;
+use App\Http\Resources\Asset as AssetResource;
 use App\Models\User;
 
 Route::get('/', function () {
@@ -47,7 +51,8 @@ Route::post(
 
 Route::resource('departments', 'DepartmentController');
 
-Route::resource('tickets', 'TicketController');
+Route::resource('tickets', 'TicketController')->except(['edit']);
+Route::get('tickets/assign/{id}', 'TicketController@edit');
 
 Route::prefix('all')->group(function () {
     Route::resource('tickets', 'TicketController');
@@ -67,10 +72,18 @@ Route::post('tickets/resolve', 'TicketController@resolve')
 Route::get('/hr-staff-list', function () {
     return UserResource::collection(User::where('ict_staff', false)->paginate(10));
 });
+
+Route::get('/tickets-parts', function () {
+    return ItemResource::collection(Item::paginate(10));
+});
+
+Route::get('/tickets-assets', function () {
+    return AssetResource::collection(Asset::paginate(10));
+});
 Route::post('ict-staffs', 'UserController@updateIctStaff');
 Route::post('/ticket-surrender/{id}', 'TicketController@surrender')->name('tickets.surrender');
 Route::patch('/ticket/resolve/{id}', 'TicketController@resolve')->name('tickets.resolve');
-
+Route::post('/issue-parts/{id}', 'TicketController@issueParts')->name('tickets.issue');
 
 
 
@@ -87,3 +100,8 @@ Route::patch('resolvedTickets/close/{id}', 'TicketController@close')->name('tick
 Route::resource('items', 'ItemController');
 
 Route::resource('assets', 'AssetController');
+
+
+Route::resource('maintenanceSchedules', 'MaintenanceScheduleController');
+
+Route::resource('cycles', 'CycleController');

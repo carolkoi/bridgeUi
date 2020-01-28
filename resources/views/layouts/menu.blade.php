@@ -5,7 +5,7 @@
 
 <li class="treeview {{ Request::is('all*') ? 'active menu-open' : '' }}">
     <a class="dropdown-toggle" href="#">
-        <i class="fa fa-truck"></i> <span>Tickets</span>
+        <i class="fa fa-ticket"></i> <span>Tickets</span>
         <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -62,5 +62,13 @@
 
 <li class="{{ Request::is('assets*') ? 'active' : '' }}">
     <a href="{{ route('assets.index') }}"><i class="fa fa-edit"></i><span>Assets</span></a>
+</li>
+
+<li class="{{ Request::is('maintenanceSchedules*') ? 'active' : '' }}">
+    <a href="{{ route('maintenanceSchedules.index') }}"><i class="fa fa-edit"></i><span>Maintenance Schedules</span></a>
+</li>
+
+<li class="{{ Request::is('cycles*') ? 'active' : '' }}">
+    <a href="{{ route('cycles.index') }}"><i class="fa fa-edit"></i><span>Cycles</span></a>
 </li>
 
