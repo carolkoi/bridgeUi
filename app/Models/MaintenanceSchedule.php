@@ -69,7 +69,7 @@ class MaintenanceSchedule extends Model
     use SoftDeletes;
 
     public $table = 'maintenance_shedules';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -106,8 +106,19 @@ class MaintenanceSchedule extends Model
      * @var array
      */
     public static $rules = [
-        
+
     ];
 
-    
+    public function department(){
+        return $this->belongsTo(Department::class, 'department_id');
+    }
+
+    public function cycle(){
+        return $this->belongsTo(Cycle::class, 'cycle_id');
+    }
+
+    public function asset(){
+        return $this->belongsTo(Asset::class, 'asset_id');
+    }
+
 }

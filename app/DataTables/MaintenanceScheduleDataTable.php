@@ -18,7 +18,12 @@ class MaintenanceScheduleDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'maintenance_schedules.datatables_actions');
+        return $dataTable
+            ->addColumn('department', 'maintenance_schedules.datatables_department')
+            ->addColumn('asset', 'maintenance_schedules.datatables_asset')
+            ->addColumn('cycle', 'maintenance_schedules.datatables_cycle')
+            ->editColumn('start_date', 'maintenance_schedules.datatables_start_date')
+            ->addColumn('action', 'maintenance_schedules.datatables_actions');
     }
 
     /**
@@ -29,7 +34,7 @@ class MaintenanceScheduleDataTable extends DataTable
      */
     public function query(MaintenanceSchedule $model)
     {
-        return $model->newQuery();
+        return $model->with(['department', 'cycle', 'asset'])->newQuery();
     }
 
     /**
@@ -66,9 +71,9 @@ class MaintenanceScheduleDataTable extends DataTable
     {
         return [
             'name',
-            'department_id',
-            'asset_id',
-            'cycle_id',
+            'department',
+            'asset',
+            'cycle',
             'start_date'
         ];
     }

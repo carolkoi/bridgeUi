@@ -97,6 +97,9 @@ class MaintenanceScheduleController extends AppBaseController
     public function edit($id)
     {
         $maintenanceSchedule = $this->maintenanceScheduleRepository->find($id);
+        $departments = Department::pluck('department', 'id');
+        $assets = Asset::pluck('name', 'id');
+        $cycles = Cycle::pluck('cycle', 'id');
 
         if (empty($maintenanceSchedule)) {
             Flash::error('Maintenance Schedule not found');
@@ -104,7 +107,8 @@ class MaintenanceScheduleController extends AppBaseController
             return redirect(route('maintenanceSchedules.index'));
         }
 
-        return view('maintenance_schedules.edit')->with('maintenanceSchedule', $maintenanceSchedule);
+        return view('maintenance_schedules.edit', ['departments' => $departments,
+            'assets' => $assets, 'cycles' => $cycles])->with('maintenanceSchedule', $maintenanceSchedule);
     }
 
     /**
