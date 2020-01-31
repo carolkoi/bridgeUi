@@ -2,11 +2,11 @@
 
 namespace App\DataTables;
 
-use App\Models\MaintenanceSchedule;
+use App\Models\MaintenanceRecord;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
 
-class MaintenanceScheduleDataTable extends DataTable
+class MaintenanceRecordDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -18,26 +18,18 @@ class MaintenanceScheduleDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable
-            ->addColumn('name', 'maintenance_schedules.datatables_name')
-            ->addColumn('department', 'maintenance_schedules.datatables_department')
-            ->addColumn('asset', 'maintenance_schedules.datatables_asset')
-            ->addColumn('cycle', 'maintenance_schedules.datatables_cycle')
-            ->editColumn('start_date', 'maintenance_schedules.datatables_start_date')
-            ->addColumn('checklist', 'maintenance_schedules.datatables_checklist')
-            ->addColumn('action', 'maintenance_schedules.datatables_actions')
-            ->rawColumns(['department', 'asset', 'cycle', 'start_date', 'checklist', 'name', 'action']);
+        return $dataTable->addColumn('action', 'maintenance_records.datatables_actions');
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\MaintenanceSchedule $model
+     * @param \App\Models\MaintenanceRecord $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(MaintenanceSchedule $model)
+    public function query(MaintenanceRecord $model)
     {
-        return $model->with(['department', 'cycle', 'asset', 'checklists'])->newQuery();
+        return $model->newQuery();
     }
 
     /**
@@ -73,12 +65,13 @@ class MaintenanceScheduleDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'name',
-            'department',
-            'asset',
-            'cycle',
-            'start_date',
-            'checklist'
+            'asset_id',
+            'asset_details',
+            'component_details',
+            'department_id',
+            'commission_date',
+            'decommission_duration',
+            'decommission_reminder'
         ];
     }
 
@@ -89,6 +82,6 @@ class MaintenanceScheduleDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'maintenance_schedulesdatatable_' . time();
+        return 'maintenance_recordsdatatable_' . time();
     }
 }

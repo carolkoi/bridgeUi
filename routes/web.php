@@ -13,10 +13,12 @@
 
 use App\Models\Item;
 use App\Models\Asset;
+use App\Models\Checklist;
 use Illuminate\Support\Facades\Route;
 use App\Http\Resources\User as UserResource;
 use App\Http\Resources\Item as ItemResource;
 use App\Http\Resources\Asset as AssetResource;
+use App\Http\Resources\Checklist as ChecklistResource;
 use App\Models\User;
 
 Route::get('/', function () {
@@ -77,6 +79,10 @@ Route::get('/tickets-parts', function () {
     return ItemResource::collection(Item::paginate(10));
 });
 
+Route::get('/maintenance-checklist', function () {
+    return ChecklistResource::collection(Checklist::where('maintenance_schedule_id', 1)->paginate(10));
+});
+
 Route::get('/tickets-assets', function () {
     return AssetResource::collection(Asset::paginate(10));
 });
@@ -105,3 +111,15 @@ Route::resource('assets', 'AssetController');
 Route::resource('maintenanceSchedules', 'MaintenanceScheduleController');
 
 Route::resource('cycles', 'CycleController');
+
+Route::resource('checklists', 'ChecklistController', [
+    'only' => ['index', 'store', 'show']
+]);
+Route::get('checklist/{id}', 'ChecklistController@create')->name('checklists.create');
+//Route::post('checklist', 'ChecklistController@store')->name('checklists.store');
+//Route::post('checklists', 'ChecklistController@index')->name('checklists.index');
+
+Route::get('checklist-preview/{id}', 'ChecklistController@preview')->name('checklist.preview');
+
+
+Route::resource('maintenanceRecords', 'MaintenanceRecordController');

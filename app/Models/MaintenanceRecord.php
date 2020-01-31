@@ -7,22 +7,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @SWG\Definition(
- *      definition="MaintenanceSchedule",
+ *      definition="MaintenanceRecord",
  *      required={""},
  *      @SWG\Property(
  *          property="id",
  *          description="id",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="name",
- *          description="name",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="department_id",
- *          description="department_id",
  *          type="integer",
  *          format="int32"
  *      ),
@@ -33,16 +22,38 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="cycle_id",
- *          description="cycle_id",
+ *          property="asset_details",
+ *          description="asset_details",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="component_details",
+ *          description="component_details",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="department_id",
+ *          description="department_id",
  *          type="integer",
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="start_date",
- *          description="start_date",
+ *          property="commission_date",
+ *          description="commission_date",
  *          type="string",
- *          format="date-time"
+ *          format="date"
+ *      ),
+ *      @SWG\Property(
+ *          property="decommission_duration",
+ *          description="decommission_duration",
+ *          type="string",
+ *          format="date"
+ *      ),
+ *      @SWG\Property(
+ *          property="decommission_reminder",
+ *          description="decommission_reminder",
+ *          type="string",
+ *          format="date"
  *      ),
  *      @SWG\Property(
  *          property="created_at",
@@ -64,12 +75,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      )
  * )
  */
-class MaintenanceSchedule extends Model
+class MaintenanceRecord extends Model
 {
     use SoftDeletes;
 
-    public $table = 'maintenance_shedules';
-
+    public $table = 'maintenance_records';
+    
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -79,11 +90,13 @@ class MaintenanceSchedule extends Model
 
 
     public $fillable = [
-        'name',
-        'department_id',
         'asset_id',
-        'cycle_id',
-        'start_date'
+        'asset_details',
+        'component_details',
+        'department_id',
+        'commission_date',
+        'decommission_duration',
+        'decommission_reminder'
     ];
 
     /**
@@ -93,11 +106,13 @@ class MaintenanceSchedule extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'name' => 'string',
-        'department_id' => 'integer',
         'asset_id' => 'integer',
-        'cycle_id' => 'integer',
-        'start_date' => 'datetime'
+        'asset_details' => 'string',
+        'component_details' => 'string',
+        'department_id' => 'integer',
+        'commission_date' => 'date',
+        'decommission_duration' => 'date',
+        'decommission_reminder' => 'date'
     ];
 
     /**
@@ -106,28 +121,8 @@ class MaintenanceSchedule extends Model
      * @var array
      */
     public static $rules = [
-        'name' => 'required',
-        'department_id' => 'required',
-        'asset_id' => 'required',
-        'cycle_id' => 'required',
-        'start_date' => 'required'
-
+        
     ];
 
-    public function department(){
-        return $this->belongsTo(Department::class, 'department_id');
-    }
-
-    public function cycle(){
-        return $this->belongsTo(Cycle::class, 'cycle_id');
-    }
-
-    public function asset(){
-        return $this->belongsTo(Asset::class, 'asset_id');
-    }
-
-    public function checklists(){
-        return $this->hasMany(Checklist::class);
-    }
-
+    
 }

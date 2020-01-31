@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Http\Requests\CreateMaintenanceScheduleRequest;
 use App\Http\Requests\UpdateMaintenanceScheduleRequest;
 use App\Models\Asset;
+use App\Models\Checklist;
 use App\Models\Cycle;
 use App\Models\Department;
 use App\Repositories\MaintenanceScheduleRepository;
@@ -42,11 +43,12 @@ class MaintenanceScheduleController extends AppBaseController
      */
     public function create()
     {
+        $checklists = Checklist::all();
         $departments = Department::pluck('department', 'id');
         $assets = Asset::pluck('name', 'id');
         $cycles = Cycle::pluck('cycle', 'id');
         return view('maintenance_schedules.create', ['departments' => $departments,
-            'assets' => $assets, 'cycles' => $cycles]);
+            'assets' => $assets, 'cycles' => $cycles, 'checklists' => $checklists]);
     }
 
     /**

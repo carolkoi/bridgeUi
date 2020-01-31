@@ -21,3 +21,13 @@
         </div>
     </div>
 @endsection
+@section('js')
+    <script>
+        jQuery(document).ready(function () {
+            $('.checkListActions').css({'display': 'none'});
+            $('#checklist_button_id').on('click', function () {
+                $('.checkListActions').show();
+            })
+        })
+    </script>
+@endsection

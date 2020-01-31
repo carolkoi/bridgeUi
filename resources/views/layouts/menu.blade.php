@@ -72,3 +72,11 @@
     <a href="{{ route('cycles.index') }}"><i class="fa fa-edit"></i><span>Cycles</span></a>
 </li>
 
+{{--<li class="{{ Request::is('checklists*') ? 'active' : '' }}">--}}
+{{--    <a href="{{ route('checklists.index') }}"><i class="fa fa-edit"></i><span>Checklists</span></a>--}}
+{{--</li>--}}
+
+<li class="{{ Request::is('maintenanceRecords*') ? 'active' : '' }}">
+    <a href="{{ route('maintenanceRecords.index') }}"><i class="fa fa-edit"></i><span>Maintenance Records</span></a>
+</li>
+

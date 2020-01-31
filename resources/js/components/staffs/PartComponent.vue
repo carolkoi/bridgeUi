@@ -1,5 +1,4 @@
 <template>
-
     <div class="box box-primary">
         <h3 class="pull-left">Part Issuance Form</h3>
         <div class="box-body">
