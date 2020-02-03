@@ -45,6 +45,8 @@
     <!-- Select2 -->
     <link rel="stylesheet" href="{{asset('admin-lte/bower_components/select2/dist/css/select2.min.css')}}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
+    <!-- jvectormap -->
+    <link rel="stylesheet" href="bower_components/jvectormap/jquery-jvectormap.css">
     <style>
         .select2-container--default .select2-selection--single{
             border-radius: unset;

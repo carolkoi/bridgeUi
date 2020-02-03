@@ -45,6 +45,11 @@
 <script src="{{asset('admin-lte/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
+<!-- ChartJS -->
+<script src="bower_components/chart.js/Chart.js"></script>
+<!-- jvectormap  -->
+<script src="plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+<script src="plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
 <script>
     $(function () {
         $(".select2").select2({

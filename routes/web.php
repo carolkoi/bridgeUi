@@ -102,7 +102,6 @@ Route::patch('resolvedTickets/close/{id}', 'TicketController@close')->name('tick
 
 
 
-
 Route::resource('items', 'ItemController');
 
 Route::resource('assets', 'AssetController');
@@ -113,7 +112,7 @@ Route::resource('maintenanceSchedules', 'MaintenanceScheduleController');
 Route::resource('cycles', 'CycleController');
 
 Route::resource('checklists', 'ChecklistController', [
-    'only' => ['index', 'store', 'show']
+    'only' => ['index', 'store', 'show', 'edit', 'update', 'destroy']
 ]);
 Route::get('checklist/{id}', 'ChecklistController@create')->name('checklists.create');
 //Route::post('checklist', 'ChecklistController@store')->name('checklists.store');

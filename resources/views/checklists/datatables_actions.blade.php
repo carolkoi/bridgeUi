@@ -1,9 +1,9 @@
-{!! Form::open(['route' => ['checklists.destroy', $id], 'method' => 'delete']) !!}
+{!! Form::open(['route' => ['checklists.destroy', $checklist->id], 'method' => 'delete']) !!}
 <div class='btn-group'>
-    <a href="{{ route('checklists.show', $id) }}" class='btn btn-default btn-xs'>
+    <a href="{{ route('checklists.show', $checklist->id) }}" class='btn btn-default btn-xs'>
         <i class="glyphicon glyphicon-eye-open"></i>
     </a>
-    <a href="{{ route('checklists.edit', $id) }}" class='btn btn-default btn-xs'>
+    <a href="{{ route('checklists.edit', $checklist->id) }}" class='btn btn-default btn-xs'>
         <i class="glyphicon glyphicon-edit"></i>
     </a>
     {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', [

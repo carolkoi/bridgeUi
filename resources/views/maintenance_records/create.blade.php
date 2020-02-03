@@ -8,20 +8,20 @@
     </section>
     <div class="content">
         @include('adminlte-templates::common.errors')
-        <maintenance-component></maintenance-component>
+{{--        <maintenance-component></maintenance-component>--}}
 
-        {{--        <div class="box box-primary">--}}
-{{--            <div class="box-body">--}}
-{{--                <div class="row">--}}
-{{--                    {!! Form::open(['route' => 'maintenanceRecords.store']) !!}--}}
+                <div class="box box-primary">
+            <div class="box-body">
+                <div class="row">
+                    {!! Form::open(['route' => 'maintenanceRecords.store']) !!}
 
-{{--                        @include('maintenance_records.fields')--}}
+                        @include('maintenance_records.fields')
 
-{{--                    {!! Form::close() !!}--}}
-{{--                </div>--}}
+                    {!! Form::close() !!}
+                </div>
 
-{{--            </div>--}}
-{{--        </div>--}}
+            </div>
+        </div>
     </div>
 
 @endsection
