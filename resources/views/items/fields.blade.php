@@ -10,11 +10,11 @@
     {!! Form::number('qty_available', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Requested Quantity Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('requested_quantity', 'Requested Quantity:') !!}
-    {!! Form::number('requested_quantity', null, ['class' => 'form-control']) !!}
-</div>
+{{--<!-- Requested Quantity Field -->--}}
+{{--<div class="form-group col-sm-6">--}}
+{{--    {!! Form::label('requested_quantity', 'Requested Quantity:') !!}--}}
+{{--    {!! Form::number('requested_quantity', null, ['class' => 'form-control']) !!}--}}
+{{--</div>--}}
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">

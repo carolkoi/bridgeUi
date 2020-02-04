@@ -56,27 +56,27 @@
 
 
 
-<li class="{{ Request::is('items*') ? 'active' : '' }}">
-    <a href="{{ route('items.index') }}"><i class="fa fa-edit"></i><span>Items</span></a>
-</li>
+{{--<li class="{{ Request::is('items*') ? 'active' : '' }}">--}}
+{{--    <a href="{{ route('items.index') }}"><i class="fa fa-edit"></i><span>Items</span></a>--}}
+{{--</li>--}}
 
-<li class="{{ Request::is('assets*') ? 'active' : '' }}">
-    <a href="{{ route('assets.index') }}"><i class="fa fa-edit"></i><span>Assets</span></a>
-</li>
+{{--<li class="{{ Request::is('assets*') ? 'active' : '' }}">--}}
+{{--    <a href="{{ route('assets.index') }}"><i class="fa fa-edit"></i><span>Assets</span></a>--}}
+{{--</li>--}}
 
 <li class="{{ Request::is('maintenanceSchedules*') ? 'active' : '' }}">
     <a href="{{ route('maintenanceSchedules.index') }}"><i class="fa fa-edit"></i><span>Maintenance Schedules</span></a>
 </li>
 
-<li class="{{ Request::is('cycles*') ? 'active' : '' }}">
-    <a href="{{ route('cycles.index') }}"><i class="fa fa-edit"></i><span>Cycles</span></a>
-</li>
+{{--<li class="{{ Request::is('cycles*') ? 'active' : '' }}">--}}
+{{--    <a href="{{ route('cycles.index') }}"><i class="fa fa-edit"></i><span>Cycles</span></a>--}}
+{{--</li>--}}
 
 {{--<li class="{{ Request::is('checklists*') ? 'active' : '' }}">--}}
 {{--    <a href="{{ route('checklists.index') }}"><i class="fa fa-edit"></i><span>Checklists</span></a>--}}
 {{--</li>--}}
 
-<li class="{{ Request::is('maintenanceRecords*') ? 'active' : '' }}">
-    <a href="{{ route('maintenanceRecords.index') }}"><i class="fa fa-edit"></i><span>Maintenance Records</span></a>
-</li>
+{{--<li class="{{ Request::is('maintenanceRecords*') ? 'active' : '' }}">--}}
+{{--    <a href="{{ route('maintenanceRecords.index') }}"><i class="fa fa-edit"></i><span>Maintenance Records</span></a>--}}
+{{--</li>--}}
 
