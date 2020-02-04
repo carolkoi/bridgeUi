@@ -1,14 +1,3 @@
-{{--<!-- User Id Field -->--}}
-{{--<div class="form-group col-sm-6">--}}
-{{--    {!! Form::label('user_id', 'User Id:') !!}--}}
-{{--    {!! Form::select('user_id', $users, ['class' => 'select2']) !!}--}}
-{{--</div>--}}
-
-{{--<!-- Department Id Field -->--}}
-{{--<div class="form-group col-sm-6">--}}
-{{--    {!! Form::label('department_id', 'Department Id:') !!}--}}
-{{--    {!! Form::number('department_id', null, ['class' => 'form-control']) !!}--}}
-{{--</div>--}}
 
 <!-- Issue Type Id Field -->
 <div class="form-group col-sm-6">

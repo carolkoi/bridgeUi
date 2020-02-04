@@ -41,7 +41,7 @@ class EmployeesCommand extends Command
     {
         $client = new Client();
 
-        $employeeUrl = 'http://hr-demo.dnsalias.com/api/v1/employees';
+        $employeeUrl = 'http://hr-demo.dnsalias.com/api/v1/hr-employees';
 
         $response = json_decode($client->get($employeeUrl, [
             'headers' => [
@@ -58,6 +58,8 @@ class EmployeesCommand extends Command
                 "last_name" => $user->last_name,
                 "middle_name" => $user->middle_name,
                 'name' => $user->first_name.' '.$user->last_name,
+                "role_id" => $user->role_id,
+                "role_name" => $user->role_name,
                 "department_id" => $user->department_id,
                 "location" => 'Nairobi'
             ];

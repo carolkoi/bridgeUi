@@ -58,5 +58,11 @@
     });
 
 </script>
+{{--<script>--}}
+{{--    CKEDITOR.replace('description')--}}
+{{--    CKEDITOR.replace('issue')--}}
+{{--    CKEDITOR.replace('solution')--}}
+
+{{--</script>--}}
 @yield('scripts')
 @yield('js')

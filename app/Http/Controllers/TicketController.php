@@ -100,7 +100,7 @@ class TicketController extends AppBaseController
         $issue = IssueType::pluck('issue', 'id');
         $categories = Category::pluck('category', 'id');
         $user = User::find($ticket->user_id);
-        $department = Department::find($ticket->department_id)->department;
+        $department = Department::find($ticket->department_id) ? Department::find($ticket->department_id)->department: '';
         $items = Item::pluck('name', 'id');
         $assets = Asset::pluck('name', 'id');
 
@@ -165,7 +165,7 @@ class TicketController extends AppBaseController
         $issue = IssueType::pluck('issue', 'id');
         $categories = Category::pluck('category', 'id');
         $user = User::find($ticket->user_id);
-        $department = Department::find($ticket->department_id)->department;
+        $department = Department::find($ticket->department_id) ? Department::find($ticket->department_id)->department: '';
         $ict_staffs = User::with('tickets')->where(['ict_staff' => true])->pluck('name', 'id');
         if (empty($ticket)) {
             Flash::error('Ticket not found');

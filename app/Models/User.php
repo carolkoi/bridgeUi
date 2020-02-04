@@ -100,7 +100,9 @@ class User extends Model
         'password',
         'department_id',
         'ict_staff',
-        'location'
+        'location',
+        'role_id',
+        'role_name'
     ];
 
     /**
@@ -116,7 +118,7 @@ class User extends Model
         'name' => 'string',
         'email' => 'string',
         'password' => 'string',
-        'department_id' => 'integer',
+        'App' => 'integer',
         'location' => 'string'
     ];
 
@@ -128,6 +130,10 @@ class User extends Model
     public static $rules = [
 
     ];
+
+    public function department(){
+        return $this->belongsTo(Department::class);
+    }
 
 
 }

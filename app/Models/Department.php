@@ -63,10 +63,7 @@ class Department extends Model
      *
      * @var array
      */
-    protected $casts = [
-        'id' => 'integer',
-        'department' => 'string'
-    ];
+
 
     /**
      * Validation rules

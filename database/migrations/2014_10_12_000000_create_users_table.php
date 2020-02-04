@@ -30,6 +30,8 @@ class CreateUsersTable extends Migration
             $table->string('email', 45)->nullable()->default(null);
             $table->string('password', 100)->nullable()->default(null);
             $table->integer('department_id')->nullable()->default(null);
+            $table->integer('role_id')->nullable();
+            $table->string('role_name', 45)->nullable();
             $table->string('location', 45)->nullable()->default(null);
             $table->tinyInteger('ict_staff')->nullable()->default('0');
             $table->string('remember_token', 150)->nullable()->default(null);

@@ -67,7 +67,7 @@ class ItemDataTable extends DataTable
         return [
             'name',
             'qty_available',
-            'requested_quantity'
+//            'requested_quantity'
         ];
     }
 

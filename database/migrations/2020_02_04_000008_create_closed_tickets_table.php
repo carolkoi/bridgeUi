@@ -4,17 +4,17 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTicketsTable extends Migration
+class CreateClosedTicketsTable extends Migration
 {
     /**
      * Schema table name to migrate
      * @var string
      */
-    public $tableName = 'tickets';
+    public $tableName = 'closed_tickets';
 
     /**
      * Run the migrations.
-     * @table tickets
+     * @table closed_tickets
      *
      * @return void
      */
@@ -33,9 +33,6 @@ class CreateTicketsTable extends Migration
             $table->tinyInteger('surrender_status')->nullable()->default('0');
             $table->tinyInteger('resolved_status')->nullable()->default('0');
             $table->tinyInteger('closed_status')->nullable()->default('0');
-            $table->longText('issue')->nullable();
-            $table->longText('solution')->nullable();
-            $table->text('selected_items')->nullable();
             $table->softDeletes();
             $table->nullableTimestamps();
         });

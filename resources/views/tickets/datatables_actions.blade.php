@@ -2,7 +2,11 @@
     <a href="{{ route('tickets.view', $id) }}" class='btn btn-default btn-sm'>
         <i class="glyphicon glyphicon-eye-open"></i>
     </a>
-@else
+@elseif($assign_to)
+    <a href="{{ url('tickets/assign/'.$id) }}" class='btn btn-primary'>
+        Reassign</i>
+    </a>
+    @else
 {{--{!! Form::open(['route' => ['tickets.destroy', $id], 'method' => 'delete']) !!}--}}
 {{--<div class='btn-group'>--}}
 {{--    <a href="{{ route('tickets.show', $id) }}" class='btn btn-default btn-xs'>--}}

@@ -41,7 +41,7 @@ class DepartmentsCommand extends Command
     {
         $client = new Client();
 
-        $departmentUrl = 'http://hr-demo.dnsalias.com/api/v1/department';
+        $departmentUrl = 'http://hr-demo.dnsalias.com/api/v1/hr-departments';
 
         $response = json_decode($client->get($departmentUrl, [
             'headers' => [
@@ -52,7 +52,7 @@ class DepartmentsCommand extends Command
         return collect($response)->each(function ($department) {
             $data = [
                 "id" => $department->id,
-                "department" => $department->department,
+                "department" => $department->name,
             ];
 
             Department::updateOrCreate([

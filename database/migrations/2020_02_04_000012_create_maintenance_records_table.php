@@ -4,17 +4,17 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateIssueTypesTable extends Migration
+class CreateMaintenanceRecordsTable extends Migration
 {
     /**
      * Schema table name to migrate
      * @var string
      */
-    public $tableName = 'issue_types';
+    public $tableName = 'maintenance_records';
 
     /**
      * Run the migrations.
-     * @table issue_types
+     * @table maintenance_records
      *
      * @return void
      */
@@ -23,8 +23,14 @@ class CreateIssueTypesTable extends Migration
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('issue', 45)->nullable()->default(null);
-            $table->tinyInteger('closed_status')->nullable()->default('0');
+            $table->integer('asset_id')->nullable();
+            $table->integer('maintenance_schedule_id')->nullable();
+            $table->text('asset_details')->nullable();
+            $table->text('component_details')->nullable();
+            $table->integer('department_id')->nullable();
+            $table->date('commission_date')->nullable();
+            $table->date('decommission_duration')->nullable();
+            $table->date('decommission_reminder')->nullable();
             $table->softDeletes();
             $table->nullableTimestamps();
         });

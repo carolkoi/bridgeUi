@@ -21,15 +21,13 @@ use App\Http\Resources\Asset as AssetResource;
 use App\Http\Resources\Checklist as ChecklistResource;
 use App\Models\User;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','Auth\LoginController@showLoginForm');
 
 
-Auth::routes();
+//Auth::routes();
 
 Route::get('/home', 'HomeController@index');
-Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
