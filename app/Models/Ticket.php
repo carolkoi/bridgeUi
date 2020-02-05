@@ -147,7 +147,7 @@ class Ticket extends Model implements HasMedia
 //        'department_id' => 'required',
         'issue_type_id' => 'required',
 //        'business_continuity_impacted' => 'required',
-        'image' => 'required',
+//        'image' => 'required',
         'description' => 'required'
 
     ];
