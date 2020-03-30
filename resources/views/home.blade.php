@@ -140,7 +140,7 @@
             {{--                                <th>TransactionStatus</th>--}}
             {{--                                <th>Currency</th>--}}
             {{--                                <th>Mobile</th>--}}
-            <th style="width:10%;">Actions</th>
+{{--            <th style="width:10%;">Actions</th>--}}
 
 
         </tr>
@@ -180,14 +180,14 @@
                 {{--                                <td>USD</td>--}}
                 {{--                                <td>{{ $transaction->req_field2 }}</td>--}}
 
-                <td class="text-right">
-                    <div class="btn-group btn-hspace">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">Open <span class="icon-dropdown mdi mdi-chevron-down"></span></button>
-                        <div class="dropdown-menu" role="menu"><a class="dropdown-item" href="{{url('/show/transaction/'.$transaction->iso_id)}}">View</a><a class="dropdown-item" href="#">Edit</a><a class="dropdown-item" href="#">Delete</a>
-                            <div class="dropdown-divider"></div><a class="dropdown-item" href="#">Separated link</a>
-                        </div>
-                    </div>
-                </td>
+{{--                <td class="text-right">--}}
+{{--                    <div class="btn-group btn-hspace">--}}
+{{--                        <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">Open <span class="icon-dropdown mdi mdi-chevron-down"></span></button>--}}
+{{--                        <div class="dropdown-menu" role="menu"><a class="dropdown-item" href="{{url('/show/transaction/'.$transaction->iso_id)}}">View</a><a class="dropdown-item" href="#">Edit</a><a class="dropdown-item" href="#">Delete</a>--}}
+{{--                            <div class="dropdown-divider"></div><a class="dropdown-item" href="#">Separated link</a>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </td>--}}
             </tr>
         @endforeach
 
