@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Laravel\Passport\HasApiTokens;
 
 /**
  * @SWG\Definition(
@@ -17,23 +16,25 @@ use Laravel\Passport\HasApiTokens;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="first_name",
- *          description="first_name",
- *          type="string"
+ *          property="company_id",
+ *          description="company_id",
+ *          type="integer",
+ *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="last_name",
- *          description="last_name",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="middle_name",
- *          description="middle_name",
- *          type="string"
+ *          property="role_id",
+ *          description="role_id",
+ *          type="integer",
+ *          format="int32"
  *      ),
  *      @SWG\Property(
  *          property="name",
  *          description="name",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="contact_person",
+ *          description="contact_person",
  *          type="string"
  *      ),
  *      @SWG\Property(
@@ -47,14 +48,19 @@ use Laravel\Passport\HasApiTokens;
  *          type="string"
  *      ),
  *      @SWG\Property(
- *          property="department_id",
- *          description="department_id",
+ *          property="msisdn",
+ *          description="msisdn",
  *          type="integer",
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="location",
- *          description="location",
+ *          property="status",
+ *          description="status",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="remember_token",
+ *          description="remember_token",
  *          type="string"
  *      ),
  *      @SWG\Property(
@@ -68,21 +74,15 @@ use Laravel\Passport\HasApiTokens;
  *          description="updated_at",
  *          type="string",
  *          format="date-time"
- *      ),
- *      @SWG\Property(
- *          property="deleted_at",
- *          description="deleted_at",
- *          type="string",
- *          format="date-time"
  *      )
  * )
  */
 class User extends Model
 {
-    use HasApiTokens, SoftDeletes;
+    use SoftDeletes;
 
     public $table = 'users';
-
+    
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -92,17 +92,15 @@ class User extends Model
 
 
     public $fillable = [
-        'first_name',
-        'last_name',
-        'middle_name',
+        'company_id',
+        'role_id',
         'name',
+        'contact_person',
         'email',
         'password',
-        'department_id',
-        'ict_staff',
-        'location',
-        'role_id',
-        'role_name'
+        'msisdn',
+        'status',
+        'remember_token'
     ];
 
     /**
@@ -112,14 +110,15 @@ class User extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'first_name' => 'string',
-        'last_name' => 'string',
-        'middle_name' => 'string',
+        'company_id' => 'integer',
+        'role_id' => 'integer',
         'name' => 'string',
+        'contact_person' => 'string',
         'email' => 'string',
         'password' => 'string',
-        'App' => 'integer',
-        'location' => 'string'
+        'msisdn' => 'integer',
+        'status' => 'string',
+        'remember_token' => 'string'
     ];
 
     /**
@@ -128,12 +127,17 @@ class User extends Model
      * @var array
      */
     public static $rules = [
-
+        'company_id' => 'required',
+        'role_id' => 'required',
+        'name' => 'required',
+        'contact_person' => 'required',
+        'email' => 'required',
+        'password' => 'required',
+        'msisdn' => 'required',
+        'status' => 'required',
+        'created_at' => 'required',
+        'updated_at' => 'required'
     ];
 
-    public function department(){
-        return $this->belongsTo(Department::class);
-    }
-
-
+    
 }

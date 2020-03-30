@@ -2,30 +2,27 @@
 
 namespace App\Repositories;
 
-use App\Models\User;
+use App\Models\GlobalSettings;
 use App\Repositories\BaseRepository;
 
 /**
- * Class UserRepository
+ * Class GlobalSettingsRepository
  * @package App\Repositories
- * @version March 30, 2020, 8:14 am UTC
+ * @version March 30, 2020, 8:16 am UTC
 */
 
-class UserRepository extends BaseRepository
+class GlobalSettingsRepository extends BaseRepository
 {
     /**
      * @var array
      */
     protected $fieldSearchable = [
-        'company_id',
-        'role_id',
-        'name',
-        'contact_person',
-        'email',
-        'password',
-        'msisdn',
-        'status',
-        'remember_token'
+        'serviceproviderid',
+        'setting',
+        'settingvalue',
+        'valuetype',
+        'addedby',
+        'ipaddress'
     ];
 
     /**
@@ -43,6 +40,6 @@ class UserRepository extends BaseRepository
      **/
     public function model()
     {
-        return User::class;
+        return GlobalSettings::class;
     }
 }

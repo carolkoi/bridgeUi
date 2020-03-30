@@ -1,48 +1,54 @@
-<!-- First Name Field -->
+<!-- Company Id Field -->
 <div class="form-group">
-    {!! Form::label('first_name', 'First Name:') !!}
-    <p>{!! $user->first_name !!}</p>
+    {!! Form::label('company_id', 'Company Id:') !!}
+    <p>{{ $user->company_id }}</p>
 </div>
 
-<!-- Last Name Field -->
+<!-- Role Id Field -->
 <div class="form-group">
-    {!! Form::label('last_name', 'Last Name:') !!}
-    <p>{!! $user->last_name !!}</p>
-</div>
-
-<!-- Middle Name Field -->
-<div class="form-group">
-    {!! Form::label('middle_name', 'Middle Name:') !!}
-    <p>{!! $user->middle_name !!}</p>
+    {!! Form::label('role_id', 'Role Id:') !!}
+    <p>{{ $user->role_id }}</p>
 </div>
 
 <!-- Name Field -->
 <div class="form-group">
     {!! Form::label('name', 'Name:') !!}
-    <p>{!! $user->name !!}</p>
+    <p>{{ $user->name }}</p>
+</div>
+
+<!-- Contact Person Field -->
+<div class="form-group">
+    {!! Form::label('contact_person', 'Contact Person:') !!}
+    <p>{{ $user->contact_person }}</p>
 </div>
 
 <!-- Email Field -->
 <div class="form-group">
     {!! Form::label('email', 'Email:') !!}
-    <p>{!! $user->email !!}</p>
+    <p>{{ $user->email }}</p>
 </div>
 
 <!-- Password Field -->
 <div class="form-group">
     {!! Form::label('password', 'Password:') !!}
-    <p>{!! $user->password !!}</p>
+    <p>{{ $user->password }}</p>
 </div>
 
-<!-- Department Id Field -->
+<!-- Msisdn Field -->
 <div class="form-group">
-    {!! Form::label('department_id', 'Department Id:') !!}
-    <p>{!! $user->department_id !!}</p>
+    {!! Form::label('msisdn', 'Msisdn:') !!}
+    <p>{{ $user->msisdn }}</p>
 </div>
 
-<!-- Location Field -->
+<!-- Status Field -->
 <div class="form-group">
-    {!! Form::label('location', 'Location:') !!}
-    <p>{!! $user->location !!}</p>
+    {!! Form::label('status', 'Status:') !!}
+    <p>{{ $user->status }}</p>
+</div>
+
+<!-- Remember Token Field -->
+<div class="form-group">
+    {!! Form::label('remember_token', 'Remember Token:') !!}
+    <p>{{ $user->remember_token }}</p>
 </div>
 

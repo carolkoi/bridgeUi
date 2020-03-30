@@ -2,11 +2,12 @@
 
 namespace App\DataTables;
 
-use App\Models\User;
+use App\Models\GlobalSettings;
+use App\Models\ServiceProviders;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
 
-class UserDataTable extends DataTable
+class GlobalSettingsDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -18,18 +19,31 @@ class UserDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'users.datatables_actions');
+        return $dataTable
+            ->addColumn('setting_id', function ($query){
+                return $query->switchsettingid;
+            })
+            ->addColumn('service_provider', function ($query){
+                return ServiceProviders::where('serviceproviderid', $query->serviceproviderid)->first()->moneyservicename;
+//                foreach ($query->serviceProviders as $serviceProvider){
+////                    dd($serviceProvider->moneyservicename);
+//                    return $serviceProvider->moneyservicename;
+//                }
+
+            })
+//            ->addColumn('service_provider', 'global_settings.datatables_sp')
+            ->addColumn('action', 'global_settings.datatables_actions');
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\User $model
+     * @param \App\Models\GlobalSettings $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(User $model)
+    public function query(GlobalSettings $model)
     {
-        return $model->newQuery();
+        return $model->with(['serviceProviders'])->newQuery();
     }
 
     /**
@@ -65,15 +79,14 @@ class UserDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'company_id',
-            'role_id',
-            'name',
-            'contact_person',
-            'email',
-            'password',
-            'msisdn',
-            'status',
-            'remember_token'
+            'setting_id',
+            'service_provider',
+//            'serviceproviderid',
+            'setting',
+            'settingvalue',
+//            'valuetype',
+//            'addedby',
+//            'ipaddress'
         ];
     }
 
@@ -84,6 +97,6 @@ class UserDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'usersdatatable_' . time();
+        return 'global_settingsdatatable_' . time();
     }
 }

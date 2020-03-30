@@ -26,7 +26,7 @@ Route::get('/','Auth\LoginController@showLoginForm');
 
 //Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -120,3 +120,24 @@ Route::get('checklist-preview/{id}', 'ChecklistController@preview')->name('check
 
 
 Route::resource('maintenanceRecords', 'MaintenanceRecordController');
+
+
+//Route::resource('transactions', 'TransactionsController');
+Route::prefix('all')->group(function () {
+    Route::resource('transactions', 'TransactionsController');
+    Route::get('successful-transactions', 'SuccessTransactionsController@index')->name('success-transactions.index');
+    Route::get('failed-transactions', 'FailedTransactionsController@index')->name('failed-transactions.index');
+    Route::get('pending-transactions', 'PendingTransactionsController@index')->name('pending-transactions.index');
+});
+Route::prefix('charts')->group(function () {
+    Route::get('failed-vs-successful', 'ChartsController@index')->name('charts.index');
+});
+Route::prefix('configurations')->group(function () {
+//    Route::get('failed-vs-successful', 'ChartsController@index')->name('charts.index');
+    Route::resource('globalSettings', 'GlobalSettingsController');
+});
+
+
+
+
+Route::resource('serviceProviders', 'ServiceProvidersController');

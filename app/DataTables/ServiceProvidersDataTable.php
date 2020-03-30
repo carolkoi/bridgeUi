@@ -2,11 +2,11 @@
 
 namespace App\DataTables;
 
-use App\Models\User;
+use App\Models\ServiceProviders;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
 
-class UserDataTable extends DataTable
+class ServiceProvidersDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -18,16 +18,16 @@ class UserDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'users.datatables_actions');
+        return $dataTable->addColumn('action', 'service_providers.datatables_actions');
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\User $model
+     * @param \App\Models\ServiceProviders $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(User $model)
+    public function query(ServiceProviders $model)
     {
         return $model->newQuery();
     }
@@ -65,15 +65,19 @@ class UserDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'company_id',
-            'role_id',
-            'name',
-            'contact_person',
-            'email',
-            'password',
-            'msisdn',
-            'status',
-            'remember_token'
+            'companyid',
+            'moneyservicename',
+            'provideridentifier',
+            'accountnumber',
+            'serviceprovidercategoryid',
+            'cutofflimit',
+            'settlementaccount',
+            'b2cbalance',
+            'c2bbalance',
+            'processingmode',
+            'addedby',
+            'serviceprovidertype',
+            'status'
         ];
     }
 
@@ -84,6 +88,6 @@ class UserDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'usersdatatable_' . time();
+        return 'service_providersdatatable_' . time();
     }
 }
