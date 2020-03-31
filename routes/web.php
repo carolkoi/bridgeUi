@@ -48,80 +48,6 @@ Route::post(
     'generator_builder/generate-from-file',
     '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@generateFromFile'
 )->name('io_generator_builder_generate_from_file');
-
-Route::resource('departments', 'DepartmentController');
-
-Route::resource('tickets', 'TicketController')->except(['edit']);
-Route::get('tickets/assign/{id}', 'TicketController@edit');
-
-Route::prefix('all')->group(function () {
-    Route::resource('tickets', 'TicketController');
-    Route::resource('resolvedTickets', 'ResolvedTicketsController');
-    Route::resource('closedTickets', 'ClosedTicketController');
-});
-Route::prefix('settings')->group(function () {
-    Route::resource('users', 'UserController');
-    Route::resource('issueTypes', 'IssueTypeController');
-    Route::resource('categories', 'CategoryController');
-});
-
-Route::post('tickets/media', 'TicketController@storeMedia')
-    ->name('tickets.storeMedia');
-Route::post('tickets/resolve', 'TicketController@resolve')
-    ->name('tickets.resolve');
-Route::get('/hr-staff-list', function () {
-    return UserResource::collection(User::where('ict_staff', false)->paginate(10));
-});
-
-Route::get('/tickets-parts', function () {
-    return ItemResource::collection(Item::paginate(10));
-});
-
-Route::get('/maintenance-checklist', function () {
-    return ChecklistResource::collection(Checklist::where('maintenance_schedule_id', 1)->paginate(10));
-});
-
-Route::get('/tickets-assets', function () {
-    return AssetResource::collection(Asset::paginate(10));
-});
-Route::post('ict-staffs', 'UserController@updateIctStaff');
-Route::post('/ticket-surrender/{id}', 'TicketController@surrender')->name('tickets.surrender');
-Route::patch('/ticket/resolve/{id}', 'TicketController@resolve')->name('tickets.resolve');
-Route::post('/issue-parts/{id}', 'TicketController@issueParts')->name('tickets.issue');
-
-
-
-Route::resource('knowledgebaseArticles', 'KnowledgebaseArticleController');
-
-
-
-Route::get('resolvedTickets/view/{id}', 'TicketController@view')->name('tickets.view');
-Route::patch('resolvedTickets/close/{id}', 'TicketController@close')->name('tickets.close');
-
-
-
-Route::resource('items', 'ItemController');
-
-Route::resource('assets', 'AssetController');
-
-
-Route::resource('maintenanceSchedules', 'MaintenanceScheduleController');
-
-Route::resource('cycles', 'CycleController');
-
-Route::resource('checklists', 'ChecklistController', [
-    'only' => ['index', 'store', 'show', 'edit', 'update', 'destroy']
-]);
-Route::get('checklist/{id}', 'ChecklistController@create')->name('checklists.create');
-//Route::post('checklist', 'ChecklistController@store')->name('checklists.store');
-//Route::post('checklists', 'ChecklistController@index')->name('checklists.index');
-
-Route::get('checklist-preview/{id}', 'ChecklistController@preview')->name('checklist.preview');
-
-
-Route::resource('maintenanceRecords', 'MaintenanceRecordController');
-
-
 //Route::resource('transactions', 'TransactionsController');
 Route::prefix('all')->group(function () {
     Route::resource('transactions', 'TransactionsController');
@@ -136,8 +62,16 @@ Route::prefix('configurations')->group(function () {
 //    Route::get('failed-vs-successful', 'ChartsController@index')->name('charts.index');
     Route::resource('globalSettings', 'GlobalSettingsController');
 });
+Route::prefix('all')->group(function () {
+    Route::resource('companies', 'CompanyController');
+});
+Route::prefix('all')->group(function () {
+    Route::resource('serviceProviders', 'ServiceProvidersController');
+
+});
 
 
 
 
-Route::resource('serviceProviders', 'ServiceProvidersController');
+
+

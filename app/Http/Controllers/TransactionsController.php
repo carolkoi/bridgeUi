@@ -114,6 +114,7 @@ class TransactionsController extends AppBaseController
     public function update($iso_id, UpdateTransactionsRequest $request)
     {
         $transactions = Transactions::where('iso_id', $iso_id)->first();
+
         if (empty($transactions)) {
             Flash::error('Transactions not found');
 

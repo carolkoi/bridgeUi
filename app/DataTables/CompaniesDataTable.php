@@ -2,12 +2,11 @@
 
 namespace App\DataTables;
 
-use App\Models\Company;
-use App\Models\ServiceProviders;
+use App\Models\Companies;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
 
-class ServiceProvidersDataTable extends DataTable
+class CompaniesDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -19,30 +18,18 @@ class ServiceProvidersDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable
-            ->addColumn('id', function ($query){
-                return $query->serviceproviderid;
-            })
-            ->addColumn('provider', function ($query){
-//                dd($query);
-                return Company::where('companyid',$query->companyid)->first()->companyname;
-            })
-            ->addColumn('service_name', function ($query){
-//                dd($query);
-                return $query->moneyservicename;
-            })
-            ->addColumn('action', 'service_providers.datatables_actions');
+        return $dataTable->addColumn('action', 'companies.datatables_actions');
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\ServiceProviders $model
+     * @param \App\Models\Companies $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(ServiceProviders $model)
+    public function query(Companies $model)
     {
-        return $model->with('company')->newQuery();
+        return $model->newQuery();
     }
 
     /**
@@ -78,21 +65,13 @@ class ServiceProvidersDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'id',
-//            'companyid',
-            'provider',
-            'service_name',
-//            'provideridentifier',
-            'accountnumber',
-//            'serviceprovidercategoryid',
-//            'cutofflimit',
-//            'settlementaccount',
-//            'b2cbalance',
-//            'c2bbalance',
-//            'processingmode',
-//            'addedby',
-            'serviceprovidertype',
-            'status'
+            'companyname',
+            'companyaddress',
+            'companyemail',
+            'contactperson',
+            'companytype',
+            'addedby',
+            'ipaddress'
         ];
     }
 
@@ -103,6 +82,6 @@ class ServiceProvidersDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'service_providersdatatable_' . time();
+        return 'companiesdatatable_' . time();
     }
 }

@@ -111,7 +111,7 @@ class ServiceProviders extends Model
     const UPDATED_AT = 'updated_at';
 
 
-//    protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at'];
     public $timestamps = false;
 
 
@@ -179,6 +179,10 @@ class ServiceProviders extends Model
 
     public function globalSetting(){
         return $this->belongsTo(GlobalSettings::class, 'switchsettingid', 'serviceproviderid');
+
+    }
+    public function company(){
+        return $this->hasOne(Company::class,  'companyid', 'serviceproviderid');
 
     }
 
