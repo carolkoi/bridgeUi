@@ -1436,12 +1436,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/InfyOmLabs/adminlte-templates.git",
-                "reference": "8f83d7e5b255b093d23357d546635a51c5287875"
+                "reference": "0a54a3250b90e1f63aed41a3e505f79d50f8b6ba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/InfyOmLabs/adminlte-templates/zipball/8f83d7e5b255b093d23357d546635a51c5287875",
-                "reference": "8f83d7e5b255b093d23357d546635a51c5287875",
+                "url": "https://api.github.com/repos/InfyOmLabs/adminlte-templates/zipball/0a54a3250b90e1f63aed41a3e505f79d50f8b6ba",
+                "reference": "0a54a3250b90e1f63aed41a3e505f79d50f8b6ba",
                 "shasum": ""
             },
             "require": {
@@ -1480,7 +1480,7 @@
                 "laravel",
                 "templates"
             ],
-            "time": "2020-02-08T13:35:55+00:00"
+            "time": "2020-07-22T10:48:50+00:00"
         },
         {
             "name": "infyomlabs/generator-builder",
@@ -1501,6 +1501,13 @@
                 "php": ">=5.5.9"
             },
             "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "\\InfyOm\\GeneratorBuilder\\GeneratorBuilderServiceProvider"
+                    ]
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "InfyOm\\GeneratorBuilder\\": "src/"
@@ -1527,6 +1534,12 @@
                 "laravel",
                 "view"
             ],
+            "funding": [
+                {
+                    "url": "https://opencollective.com/infyomlabs",
+                    "type": "opencollective"
+                }
+            ],
             "time": "2019-11-30T03:35:26+00:00"
         },
         {
@@ -1535,12 +1548,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/InfyOmLabs/laravel-generator.git",
-                "reference": "7b10b1fe9c48ac6b2e2c3116775fb0a317b96379"
+                "reference": "54c7f77e0f4accd988156941f978c20ea03ecfbe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/InfyOmLabs/laravel-generator/zipball/7b10b1fe9c48ac6b2e2c3116775fb0a317b96379",
-                "reference": "7b10b1fe9c48ac6b2e2c3116775fb0a317b96379",
+                "url": "https://api.github.com/repos/InfyOmLabs/laravel-generator/zipball/54c7f77e0f4accd988156941f978c20ea03ecfbe",
+                "reference": "54c7f77e0f4accd988156941f978c20ea03ecfbe",
                 "shasum": ""
             },
             "require": {
@@ -1593,7 +1606,13 @@
                 "test",
                 "view"
             ],
-            "time": "2020-01-25T13:51:54+00:00"
+            "funding": [
+                {
+                    "url": "https://opencollective.com/infyomlabs",
+                    "type": "open_collective"
+                }
+            ],
+            "time": "2020-07-25T13:13:19+00:00"
         },
         {
             "name": "infyomlabs/swagger-generator",
@@ -1629,6 +1648,12 @@
                 "laravel",
                 "swagger",
                 "templates"
+            ],
+            "funding": [
+                {
+                    "url": "https://opencollective.com/infyomlabs",
+                    "type": "opencollective"
+                }
             ],
             "time": "2017-11-21T09:25:50+00:00"
         },
@@ -1672,6 +1697,7 @@
                     "email": "jakub.onderka@gmail.com"
                 }
             ],
+            "abandoned": "php-parallel-lint/php-console-color",
             "time": "2018-09-29T17:23:10+00:00"
         },
         {
@@ -1718,6 +1744,7 @@
                 }
             ],
             "description": "Highlight PHP code in terminal",
+            "abandoned": "php-parallel-lint/php-console-highlighter",
             "time": "2018-09-29T18:48:56+00:00"
         },
         {
@@ -1912,12 +1939,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "ce08aaee3a0b8bb58b459b2decf7f25ba7b10fa4"
+                "reference": "78eb4dabcc03e189620c16f436358d41d31ae11f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/ce08aaee3a0b8bb58b459b2decf7f25ba7b10fa4",
-                "reference": "ce08aaee3a0b8bb58b459b2decf7f25ba7b10fa4",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/78eb4dabcc03e189620c16f436358d41d31ae11f",
+                "reference": "78eb4dabcc03e189620c16f436358d41d31ae11f",
                 "shasum": ""
             },
             "require": {
@@ -2052,7 +2079,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2020-02-14T14:29:11+00:00"
+            "time": "2020-04-14T14:14:36+00:00"
         },
         {
             "name": "laravel/passport",
@@ -3234,16 +3261,16 @@
         },
         {
             "name": "phpseclib/phpseclib",
-            "version": "2.0.26",
+            "version": "2.0.31",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "09655fcc1f8bab65727be036b28f6f20311c126c"
+                "reference": "233a920cb38636a43b18d428f9a8db1f0a1a08f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/09655fcc1f8bab65727be036b28f6f20311c126c",
-                "reference": "09655fcc1f8bab65727be036b28f6f20311c126c",
+                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/233a920cb38636a43b18d428f9a8db1f0a1a08f4",
+                "reference": "233a920cb38636a43b18d428f9a8db1f0a1a08f4",
                 "shasum": ""
             },
             "require": {
@@ -3251,8 +3278,7 @@
             },
             "require-dev": {
                 "phing/phing": "~2.7",
-                "phpunit/phpunit": "^4.8.35|^5.7|^6.0",
-                "sami/sami": "~2.0",
+                "phpunit/phpunit": "^4.8.35|^5.7|^6.0|^9.4",
                 "squizlabs/php_codesniffer": "~2.0"
             },
             "suggest": {
@@ -3336,7 +3362,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-03-13T04:15:39+00:00"
+            "time": "2021-04-06T13:56:45+00:00"
         },
         {
             "name": "prettus/l5-repository",
@@ -6222,6 +6248,7 @@
                 "laravel",
                 "swagger"
             ],
+            "abandoned": true,
             "time": "2019-09-09T20:08:27+00:00"
         },
         {
@@ -6518,6 +6545,7 @@
                 "faker",
                 "fixtures"
             ],
+            "abandoned": true,
             "time": "2019-12-12T13:22:17+00:00"
         },
         {
@@ -7311,6 +7339,7 @@
             "keywords": [
                 "tokenizer"
             ],
+            "abandoned": true,
             "time": "2019-09-17T06:23:10+00:00"
         },
         {
@@ -8065,12 +8094,12 @@
             "version": "1.7.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/webmozart/assert.git",
+                "url": "https://github.com/webmozarts/assert.git",
                 "reference": "aed98a490f9a8f78468232db345ab9cf606cf598"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webmozart/assert/zipball/aed98a490f9a8f78468232db345ab9cf606cf598",
+                "url": "https://api.github.com/repos/webmozarts/assert/zipball/aed98a490f9a8f78468232db345ab9cf606cf598",
                 "reference": "aed98a490f9a8f78468232db345ab9cf606cf598",
                 "shasum": ""
             },
